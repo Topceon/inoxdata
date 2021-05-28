@@ -5,9 +5,9 @@ from .forms import *
 
 
 def index(request):
-    form = AddPart()
-    return render(request, 'orders/index.html')
+    return HttpResponse("Готовые детали")
 
 
 def ready(request):
-    return HttpResponse("Готовые детали")
+    form = AddPart()
+    return render(request, 'orders/ready.html', {'form': form})
