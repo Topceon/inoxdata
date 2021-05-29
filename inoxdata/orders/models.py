@@ -13,14 +13,14 @@ class Orders(models.Model):
 
 
 class Parts(models.Model):
-    name_part = models.CharField(max_length=255)  # название детали
+    name_part = models.CharField(max_length=255, default=1)  # название детали
     material = models.ForeignKey('Materials', on_delete=models.PROTECT)  # ссылка на материал
-    x_length = models.IntegerField()  # длина детали
-    y_length = models.IntegerField()  # ширина детали
+    x_length = models.IntegerField(default=1)  # длина детали
+    y_length = models.IntegerField(default=1)  # ширина детали
     fill_factor = models.FloatField(default=1)  # коэффициент заполнения на листе
-    cut_length = models.IntegerField()  # длина реза
-    cut_input = models.IntegerField()  # количество входов
-    otk = models.BooleanField()  # отработана
+    cut_length = models.IntegerField(default=1)  # длина реза
+    cut_input = models.IntegerField(default=1)  # количество входов
+    otk = models.BooleanField(default=False)  # отработана
 
 
 class Materials(models.Model):
