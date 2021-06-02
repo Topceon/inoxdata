@@ -9,7 +9,8 @@ class Orders(models.Model):
     priority = models.ForeignKey('Orders', on_delete=models.PROTECT)  # ссылка на предыдущий заказ для последовательн
     note = models.TextField(blank=True)  # примечание (blank=True - значение может быть пустым)
     need_material = models.BooleanField(default=True)  # на будущее, есть ли материал
-    date_for_ready = models.DateField()
+    date_for_ready = models.DateField()  # дата выдачи заказа клиенту
+    otk = models.BooleanField(default=False)  # первая деталь в партии
 
 
 class Parts(models.Model):
@@ -24,11 +25,11 @@ class Parts(models.Model):
 
 
 class Materials(models.Model):
-    name_material = models.CharField(max_length=255)  # название материала
-    thickness_material = models.CharField(max_length=255)  # толщина материала
-    fiber_speed = models.FloatField(default=None)  # скорость резки на волокне
-    yag_speed = models.FloatField(default=None)  # скорость резки на твердотельном
-    gidro_speed = models.FloatField(default=None)  # скорость резки на гидре
+    name_material = models.CharField(max_length=255, verbose_name='Материал')  # название материала
+    thickness_material = models.CharField(max_length=255, verbose_name='Толщина')  # толщина материала
+    fiber_speed = models.FloatField(null=True, blank=True, verbose_name='Волокно')  # скорость резки на волокне
+    yag_speed = models.FloatField(null=True, blank=True, verbose_name='Yag')  # скорость резки на твердотельном
+    gidro_speed = models.FloatField(null=True, blank=True, verbose_name='Гидро')  # скорость резки на гидре
 
 
 class ReadyOrders(models.Model):
@@ -37,6 +38,7 @@ class ReadyOrders(models.Model):
     need_qty = models.IntegerField()  # требуемое количество деталей
     note = models.TextField(blank=True)  # примечание (blank=True - значение может быть пустым)
     date_time_ready = models.DateTimeField(auto_now_add=True)  # время готовности
+    otk = models.CharField(max_length=255)  # кто утвердил партию
 
 
 class Storage(models.Model):

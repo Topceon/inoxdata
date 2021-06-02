@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ Title }}</title>
+    <h3>{{ Title }}</h3>
+</head>
+<body>
+<form action="{% url 'forms' %}" method="post">
+    {% csrf_token %}
+
+{% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors}}</div>
+{% endfor %}
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

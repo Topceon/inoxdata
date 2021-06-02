@@ -14,3 +14,14 @@ class AddPartForm(forms.ModelForm):
             'cut_length',
             'cut_input',
             'otk']
+
+
+class AddMaterialForm(forms.ModelForm):
+    class Meta:
+        model = Materials
+        fields = [
+            'name_material',
+            'thickness_material',
+            'fiber_speed',
+            'yag_speed',
+            'gidro_speed']

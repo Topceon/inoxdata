@@ -20,3 +20,17 @@ def ready(request):
     else:
         form = AddPartForm()
     return render(request, 'orders/ready.html', {'form': form})
+
+
+def material_form(request):
+    if request.method == 'POST':
+        form = AddMaterialForm(request.POST)
+        if form.is_valid():
+            try:
+                Materials.objects.create(**form.cleaned_data)
+                return redirect('form')
+            except:
+                form.add_error(None, 'ошибка блин')
+    else:
+        form = AddMaterialForm()
+    return render(request, 'orders/forms.html', {'Title': 'Форма для материала', 'form': form})
