@@ -14,14 +14,14 @@ class Orders(models.Model):
 
 
 class Parts(models.Model):
-    name_part = models.CharField(max_length=255, default=1)  # название детали
-    material = models.ForeignKey('Materials', on_delete=models.PROTECT)  # ссылка на материал
-    x_length = models.IntegerField(default=1)  # длина детали
-    y_length = models.IntegerField(default=1)  # ширина детали
-    fill_factor = models.FloatField(default=1)  # коэффициент заполнения на листе
-    cut_length = models.IntegerField(default=1)  # длина реза
-    cut_input = models.IntegerField(default=1)  # количество входов
-    otk = models.BooleanField(default=False)  # отработана
+    name_part = models.CharField(max_length=255, verbose_name='Деталь')  # название детали
+    material = models.ForeignKey('Materials', verbose_name='Материал', on_delete=models.PROTECT)  # ссылка на материал
+    x_length = models.IntegerField(verbose_name='Длина')  # длина детали
+    y_length = models.IntegerField(verbose_name='Ширина')  # ширина детали
+    fill_factor = models.FloatField(default=1, verbose_name='Фактор площади')  # коэффициент заполнения на листе
+    cut_length = models.IntegerField(verbose_name='Длина реза(мм)')  # длина реза
+    cut_input = models.IntegerField(verbose_name='Количество входов')  # количество входов
+    otk = models.BooleanField(default=False, verbose_name='Одобрен')  # отработана
 
 
 class Materials(models.Model):
@@ -30,6 +30,10 @@ class Materials(models.Model):
     fiber_speed = models.FloatField(null=True, blank=True, verbose_name='Волокно')  # скорость резки на волокне
     yag_speed = models.FloatField(null=True, blank=True, verbose_name='Yag')  # скорость резки на твердотельном
     gidro_speed = models.FloatField(null=True, blank=True, verbose_name='Гидро')  # скорость резки на гидре
+
+    def __str__(self):
+        return str(self.name_material)+' '+str(self.thickness_material)+'мм'
+
 
 
 class ReadyOrders(models.Model):

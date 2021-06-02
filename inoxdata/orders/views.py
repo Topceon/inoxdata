@@ -8,7 +8,7 @@ def index(request):
     return HttpResponse("Готовые детали")
 
 
-def ready(request):
+def part_form(request):
     if request.method == 'POST':
         form = AddPartForm(request.POST)
         if form.is_valid():
@@ -19,7 +19,7 @@ def ready(request):
                 form.add_error(None, 'ошибка блин')
     else:
         form = AddPartForm()
-    return render(request, 'orders/ready.html', {'form': form})
+    return render(request, 'orders/ready.html', {'Title': 'Создать новую деталь', 'form': form})
 
 
 def material_form(request):
@@ -33,4 +33,4 @@ def material_form(request):
                 form.add_error(None, 'ошибка блин')
     else:
         form = AddMaterialForm()
-    return render(request, 'orders/forms.html', {'Title': 'Форма для материала', 'form': form})
+    return render(request, 'orders/forms.html', {'Title': 'Создать новый материал', 'form': form})
