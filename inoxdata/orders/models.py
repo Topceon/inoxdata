@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Orders(models.Model):
@@ -33,6 +34,9 @@ class Materials(models.Model):
 
     def __str__(self):
         return str(self.name_material)+' '+str(self.thickness_material)+'мм'
+
+    def get_absolute_url(self):
+        return reverse('forms')
 
 
 

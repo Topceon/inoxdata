@@ -2,10 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>{{ Title }}</title>
-    <h3>{{ Title }}</h3>
+    <title>4454545</title>
 </head>
 <body>
+<a href="{% url 'home' %}">домой</a>
+<a href="{% url 'ready' %}">готовые</a>
+<a href="{% url 'forms' %}">формы</a>
 <form action="{% url 'forms' %}" method="post">
     {% csrf_token %}
 
@@ -15,5 +17,6 @@
 {% endfor %}
     <button type="submit">Добавить</button>
 </form>
+
 </body>
 </html>

@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ Title }}</title>
-    <h3>{{ Title }}</h3>
 </head>
 <body>
-<form action="{% url 'ready' %}" method="post">
-    {% csrf_token %}
+<a href={% url 'home' %}>домой</a>
+<a href={% url 'ready' %}>готовые</a>
+<a href={% url 'forms' %}>формы</a>
+<h3>{{ Title }}</h3>
 
-{% for f in form %}
-<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-<div class="form-error">{{ f.errors}}</div>
-{% endfor %}
-    <button type="submit">Добавить</button>
-</form>
 </body>
 </html>

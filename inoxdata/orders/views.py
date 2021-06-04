@@ -1,11 +1,18 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, CreateView
 
 from .forms import *
 
 
-def index(request):
-    return HttpResponse("Готовые детали")
+class OrdersHome(ListView):
+    model = Parts
+    template_name = 'orders/index.html'
+
+
+class FormCreator(CreateView):
+    form_class = AddMaterialForm
+    template_name = 'orders/forms.html'
 
 
 def part_form(request):
@@ -20,17 +27,3 @@ def part_form(request):
     else:
         form = AddPartForm()
     return render(request, 'orders/ready.html', {'Title': 'Создать новую деталь', 'form': form})
-
-
-def material_form(request):
-    if request.method == 'POST':
-        form = AddMaterialForm(request.POST)
-        if form.is_valid():
-            try:
-                Materials.objects.create(**form.cleaned_data)
-                return redirect('form')
-            except:
-                form.add_error(None, 'ошибка блин')
-    else:
-        form = AddMaterialForm()
-    return render(request, 'orders/forms.html', {'Title': 'Создать новый материал', 'form': form})
