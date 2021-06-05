@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Создание материала</title>
+    <title>Создание детали</title>
 </head>
 <body>
 <a href="{% url 'home' %}">В работе</a>
@@ -10,9 +10,9 @@
 <a href="{% url 'forms' %}">Материал  </a>
 <a href="{% url 'form_parts' %}">Деталь  </a>
 <a href="{% url 'form_orders' %}">Заказ  </a>
-<h4>Создание материала</h4>
+<h3>Создание детали</h3>
 
-<form action="{% url 'forms' %}" method="post">
+<form action="{% url 'form_parts' %}" method="post">
     {% csrf_token %}
 
     {% for f in form %}

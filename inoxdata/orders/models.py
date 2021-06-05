@@ -3,15 +3,18 @@ from django.urls import reverse
 
 
 class Orders(models.Model):
-    nameOrder = models.CharField(max_length=255)  # номер заказа
-    part = models.ForeignKey('Parts', on_delete=models.PROTECT)  # ссылка на деталь
-    ready_qty = models.IntegerField()  # количество готовых деталей
-    need_qty = models.IntegerField()  # требуемое количество деталей
-    priority = models.ForeignKey('Orders', on_delete=models.PROTECT)  # ссылка на предыдущий заказ для последовательн
-    note = models.TextField(blank=True)  # примечание (blank=True - значение может быть пустым)
-    need_material = models.BooleanField(default=True)  # на будущее, есть ли материал
-    date_for_ready = models.DateField()  # дата выдачи заказа клиенту
-    otk = models.BooleanField(default=False)  # первая деталь в партии
+    nameOrder = models.CharField(max_length=255, verbose_name='Заказ')  # номер заказа
+    part = models.ForeignKey('Parts', on_delete=models.PROTECT, verbose_name='Деталь')  # ссылка на деталь
+    ready_qty = models.IntegerField(default=0)  # количество готовых деталей
+    need_qty = models.IntegerField(verbose_name='Количество')  # требуемое количество деталей
+    priority = models.ForeignKey('Orders', blank=True, on_delete=models.PROTECT)  # споследовательность
+    note = models.TextField(blank=True, verbose_name='Примечание')  # примечание (blank=True - значения может не быть)
+    need_material = models.BooleanField(default=True, verbose_name='Материал в наличии')  # на будущее, есть ли материал
+    date_for_ready = models.DateField(verbose_name='Дата выдачи заказчику')  # дата выдачи заказа клиенту
+    otk = models.BooleanField(default=False, verbose_name='Одобрен')  # первая деталь в партии
+
+    def get_absolute_url(self):
+        return reverse('form_orders')
 
 
 class Parts(models.Model):
@@ -24,6 +27,9 @@ class Parts(models.Model):
     cut_input = models.IntegerField(verbose_name='Количество входов')  # количество входов
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # отработана
 
+    def get_absolute_url(self):
+        return reverse('form_parts')
+
 
 class Materials(models.Model):
     name_material = models.CharField(max_length=255, verbose_name='Материал')  # название материала
@@ -33,11 +39,10 @@ class Materials(models.Model):
     gidro_speed = models.FloatField(null=True, blank=True, verbose_name='Гидро')  # скорость резки на гидре
 
     def __str__(self):
-        return str(self.name_material)+' '+str(self.thickness_material)+'мм'
+        return str(self.name_material) + ' ' + str(self.thickness_material) + 'мм'
 
     def get_absolute_url(self):
         return reverse('forms')
-
 
 
 class ReadyOrders(models.Model):
@@ -47,6 +52,9 @@ class ReadyOrders(models.Model):
     note = models.TextField(blank=True)  # примечание (blank=True - значение может быть пустым)
     date_time_ready = models.DateTimeField(auto_now_add=True)  # время готовности
     otk = models.CharField(max_length=255)  # кто утвердил партию
+
+    def get_absolute_url(self):
+        return reverse('ready')
 
 
 class Storage(models.Model):
