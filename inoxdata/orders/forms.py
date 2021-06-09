@@ -10,11 +10,12 @@ class AddPartForm(forms.ModelForm):
         fields = [
             'name_part',
             'material',
+            'thickness',
+            'cut_length',
+            'cut_input',
             'x_length',
             'y_length',
             'fill_factor',
-            'cut_length',
-            'cut_input',
             'otk']
 
 
@@ -22,11 +23,14 @@ class AddMaterialForm(forms.ModelForm):
     class Meta:
         model = Materials
         fields = [
-            'name_material',
-            'thickness_material',
-            'fiber_speed',
-            'yag_speed',
-            'gidro_speed']
+            'name_material']
+
+
+class AddThicknessForm(forms.ModelForm):
+    class Meta:
+        model = Thickness
+        fields = [
+            'thickness']
 
 
 class AddOrderForm(forms.ModelForm):
@@ -39,6 +43,6 @@ class AddOrderForm(forms.ModelForm):
             'note',
             'date_for_ready']
         widgets = {
-            'date_for_ready': DateInput(attrs={'type': 'date'}) # календарик в форме
+            'date_for_ready': DateInput(attrs={'type': 'date'})  # календарик в форме
         }
 

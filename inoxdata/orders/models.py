@@ -20,11 +20,12 @@ class Orders(models.Model):
 class Parts(models.Model):
     name_part = models.CharField(max_length=255, verbose_name='Деталь')  # название детали
     material = models.ForeignKey('Materials', verbose_name='Материал', on_delete=models.PROTECT)  # ссылка на материал
+    thickness = models.ForeignKey('Thickness', verbose_name='Толщина', on_delete=models.PROTECT)  # толщина материала
+    cut_length = models.IntegerField(verbose_name='Длина реза(мм)')  # длина реза
+    cut_input = models.IntegerField(verbose_name='Количество входов')  # количество входов
     x_length = models.IntegerField(verbose_name='Длина')  # длина детали
     y_length = models.IntegerField(verbose_name='Ширина')  # ширина детали
     fill_factor = models.FloatField(default=1, verbose_name='Фактор площади')  # коэффициент заполнения на листе
-    cut_length = models.IntegerField(verbose_name='Длина реза(мм)')  # длина реза
-    cut_input = models.IntegerField(verbose_name='Количество входов')  # количество входов
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # отработана
 
     def get_absolute_url(self):
@@ -33,16 +34,22 @@ class Parts(models.Model):
 
 class Materials(models.Model):
     name_material = models.CharField(max_length=255, verbose_name='Материал')  # название материала
-    thickness_material = models.CharField(max_length=255, verbose_name='Толщина')  # толщина материала
-    fiber_speed = models.FloatField(null=True, blank=True, verbose_name='Волокно')  # скорость резки на волокне
-    yag_speed = models.FloatField(null=True, blank=True, verbose_name='Yag')  # скорость резки на твердотельном
-    gidro_speed = models.FloatField(null=True, blank=True, verbose_name='Гидро')  # скорость резки на гидре
 
     def __str__(self):
-        return str(self.name_material) + ' ' + str(self.thickness_material) + 'мм'
+        return str(self.name_material)
 
     def get_absolute_url(self):
-        return reverse('forms')
+        return reverse('form_materials')
+
+
+class Thickness(models.Model):
+    thickness = models.FloatField(verbose_name='Толщина')  # толщина материала
+
+    def __str__(self):
+        return str(self.thickness)
+
+    def get_absolute_url(self):
+        return reverse('form_thickness')
 
 
 class ReadyOrders(models.Model):
@@ -51,6 +58,8 @@ class ReadyOrders(models.Model):
     need_qty = models.IntegerField()  # требуемое количество деталей
     note = models.TextField(blank=True)  # примечание (blank=True - значение может быть пустым)
     date_time_ready = models.DateTimeField(auto_now_add=True)  # время готовности
+    material = models.ForeignKey('Materials', verbose_name='Материал', on_delete=models.PROTECT)  # если был использован
+    thickness = models.ForeignKey('Thickness', verbose_name='Материал', on_delete=models.PROTECT)  # не стандартный мате
     otk = models.CharField(max_length=255)  # кто утвердил партию
 
     def get_absolute_url(self):
@@ -60,5 +69,6 @@ class ReadyOrders(models.Model):
 class Storage(models.Model):
     name = models.CharField(max_length=255)  # обозначение куска для идентификации
     material = models.ForeignKey('Materials', on_delete=models.PROTECT)  # ссылка на характеристики материала
+    thickness = models.ForeignKey('Thickness', verbose_name='Материал', on_delete=models.PROTECT)  # толщина материала
     square = models.FloatField()  # количество материала в мкв
     place = models.CharField(max_length=255)  # место где искать кусок

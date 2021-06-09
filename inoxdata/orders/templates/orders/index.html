@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Главная</title>
-</head>
-<body>
-<a href="{% url 'home' %}">В работе</a>
-<a href="{% url 'ready' %}">готовые</a>
-<a href="{% url 'forms' %}">Материал  </a>
-<a href="{% url 'form_parts' %}">Деталь  </a>
-<a href="{% url 'form_orders' %}">Заказ  </a>
-<h1>В работе</h1>
-</body>
-</html>
+{% extends 'orders/base.html' %}
+
+{% block content %}
+
+Главная
+
+{% endblock %}

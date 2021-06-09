@@ -18,13 +18,22 @@ class ListReadyOrders(ListView):
 class FormCreator(CreateView):
     form_class = AddMaterialForm
     template_name = 'orders/forms.html'
+    extra_context = {'forms': 'form_materials'}
+
+
+class FormThicknessCreator(CreateView):
+    form_class = AddThicknessForm
+    template_name = 'orders/forms.html'
+    extra_context = {'forms': 'form_thickness'}
 
 
 class FormPartCreator(CreateView):
     form_class = AddPartForm
-    template_name = 'orders/form_parts.html'
+    template_name = 'orders/forms.html'
+    extra_context = {'forms': 'form_parts'}
 
 
 class FormOrderCreator(CreateView):
     form_class = AddOrderForm
-    template_name = 'orders/form_orders.html'
+    template_name = 'orders/forms.html'
+    extra_context = {'forms': 'form_orders'}

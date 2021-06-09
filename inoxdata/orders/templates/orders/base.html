@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> Создание </title>
+</head>
+<body>
+<a href="{% url 'home' %}">В работе</a>
+<a href="{% url 'ready' %}">готовые</a>
+<a href="{% url 'form_materials' %}">Материал  </a>
+<a href="{% url 'form_parts' %}">Деталь  </a>
+<a href="{% url 'form_orders' %}">Заказ  </a>
+<a href="{% url 'form_thickness' %}">Толщина  </a>
+<h4>Создание </h4>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>
