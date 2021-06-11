@@ -6,8 +6,9 @@ from .forms import *
 
 
 class OrdersHome(ListView):
-    model = Parts
+    model = Orders
     template_name = 'orders/index.html'
+
 
 
 class ListReadyOrders(ListView):
@@ -37,3 +38,9 @@ class FormOrderCreator(CreateView):
     form_class = AddOrderForm
     template_name = 'orders/forms.html'
     extra_context = {'forms': 'form_orders'}
+
+
+class FormMachineCreator(CreateView):
+    form_class = AddMachineForm
+    template_name = 'orders/forms.html'
+    extra_context = {'forms': 'form_machine'}

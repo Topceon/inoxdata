@@ -33,11 +33,18 @@ class AddThicknessForm(forms.ModelForm):
             'thickness']
 
 
+class AddMachineForm(forms.ModelForm):
+    class Meta:
+        model = Machine
+        fields = [
+            'name']
+
+
 class AddOrderForm(forms.ModelForm):
     class Meta:
         model = Orders
         fields = [
-            'nameOrder',
+            'name_order',
             'part',
             'need_qty',
             'note',

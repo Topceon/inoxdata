@@ -3,15 +3,18 @@ from django.urls import reverse
 
 
 class Orders(models.Model):
-    nameOrder = models.CharField(max_length=255, verbose_name='Заказ')  # номер заказа
+    name_order = models.CharField(max_length=255, verbose_name='Заказ')  # номер заказа
     part = models.ForeignKey('Parts', on_delete=models.PROTECT, verbose_name='Деталь')  # ссылка на деталь
     ready_qty = models.IntegerField(default=0)  # количество готовых деталей
     need_qty = models.IntegerField(verbose_name='Количество')  # требуемое количество деталей
-    priority = models.ForeignKey('Orders', blank=True, on_delete=models.PROTECT)  # споследовательность
+    machine = models.ForeignKey('Machine', on_delete=models.PROTECT)  # станок для резки
     note = models.TextField(blank=True, verbose_name='Примечание')  # примечание (blank=True - значения может не быть)
     need_material = models.BooleanField(default=True, verbose_name='Материал в наличии')  # на будущее, есть ли материал
     date_for_ready = models.DateField(verbose_name='Дата выдачи заказчику')  # дата выдачи заказа клиенту
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # первая деталь в партии
+
+    def __str__(self):
+        return str(self.name_order)
 
     def get_absolute_url(self):
         return reverse('form_orders')
@@ -26,7 +29,11 @@ class Parts(models.Model):
     x_length = models.IntegerField(verbose_name='Длина')  # длина детали
     y_length = models.IntegerField(verbose_name='Ширина')  # ширина детали
     fill_factor = models.FloatField(default=1, verbose_name='Фактор площади')  # коэффициент заполнения на листе
+    # note = models.TextField(blank=True, verbose_name='Примечание')  # примечание (blank=True - значения может не быть)
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # отработана
+
+    def __str__(self):
+        return str(self.name_part)
 
     def get_absolute_url(self):
         return reverse('form_parts')
@@ -53,7 +60,7 @@ class Thickness(models.Model):
 
 
 class ReadyOrders(models.Model):
-    nameOrder = models.CharField(max_length=255)  # номер заказа
+    name_order = models.CharField(max_length=255)  # номер заказа
     part = models.ForeignKey('Parts', on_delete=models.PROTECT)  # ссылка на деталь
     need_qty = models.IntegerField()  # требуемое количество деталей
     note = models.TextField(blank=True)  # примечание (blank=True - значение может быть пустым)
@@ -72,3 +79,13 @@ class Storage(models.Model):
     thickness = models.ForeignKey('Thickness', verbose_name='Материал', on_delete=models.PROTECT)  # толщина материала
     square = models.FloatField()  # количество материала в мкв
     place = models.CharField(max_length=255)  # место где искать кусок
+
+
+class Machine(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Станок')  # станок
+
+    def __str__(self):
+        return str(self.name)
+
+    def get_absolute_url(self):
+        return reverse('form_machine')
