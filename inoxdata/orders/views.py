@@ -44,3 +44,9 @@ class FormMachineCreator(CreateView):
     form_class = AddMachineForm
     template_name = 'orders/forms.html'
     extra_context = {'forms': 'form_machine'}
+
+
+class FormCuttingSpeedCreator(CreateView):
+    form_class = AddCuttingSpeedForm
+    template_name = 'orders/forms.html'
+    extra_context = {'forms': 'form_cutting_speed'}

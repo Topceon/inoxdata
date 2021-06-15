@@ -16,6 +16,7 @@ class AddPartForm(forms.ModelForm):
             'x_length',
             'y_length',
             'fill_factor',
+            'note',
             'otk']
 
 
@@ -47,9 +48,18 @@ class AddOrderForm(forms.ModelForm):
             'name_order',
             'part',
             'need_qty',
+            'machine',
             'note',
-            'date_for_ready']
-        widgets = {
-            'date_for_ready': DateInput(attrs={'type': 'date'})  # календарик в форме
-        }
+            'date_for_ready',
+            'thickness']
+        widgets = {'date_for_ready': DateInput(attrs={'type': 'date'})}  # календарик в форме
 
+
+class AddCuttingSpeedForm(forms.ModelForm):
+    class Meta:
+        model = Orders
+        fields = [
+            'material',
+            'thickness',
+            'machine',
+            'speed']
