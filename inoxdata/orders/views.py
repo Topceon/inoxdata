@@ -8,7 +8,34 @@ from .forms import *
 class OrdersHome(ListView):
     model = Orders
     template_name = 'orders/index.html'
+    extra_context = {"menu": "trr"}
 
+
+class VoloknoWork(ListView):
+    model = Orders
+    template_name = 'orders/index.html'
+    extra_context = {"Machine": "Волокно"}
+
+    def get_queryset(self):
+        return Orders.objects.filter(machine=1)
+
+
+class YagWork(ListView):
+    model = Orders
+    template_name = 'orders/index.html'
+    extra_context = {"Machine": "YAG"}
+
+    def get_queryset(self):
+        return Orders.objects.filter(machine=2)
+
+
+class GidroWork(ListView):
+    model = Orders
+    template_name = 'orders/index.html'
+    extra_context = {"Machine": "Гидра"}
+
+    def get_queryset(self):
+        return Orders.objects.filter(machine=3)
 
 
 class ListReadyOrders(ListView):

@@ -12,7 +12,7 @@ class Orders(models.Model):
     need_material = models.BooleanField(default=True, verbose_name='Материал в наличии')  # на будущее, есть ли материал
     date_for_ready = models.DateField(verbose_name='Дата выдачи заказчику')  # дата выдачи заказа клиенту
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # первая деталь в партии
-    thickness = models.ForeignKey('Thickness', blank=True, verbose_name='Толщина', on_delete=models.PROTECT)
+    thickness = models.ForeignKey('Thickness', null=True, blank=True, verbose_name='Толщина', on_delete=models.PROTECT)
 
     def __str__(self):
         return str(self.name_order)

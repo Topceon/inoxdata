@@ -57,7 +57,7 @@ class AddOrderForm(forms.ModelForm):
 
 class AddCuttingSpeedForm(forms.ModelForm):
     class Meta:
-        model = Orders
+        model = CuttingSpeed
         fields = [
             'material',
             'thickness',
