@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import DateInput
+from django.forms import DateInput, TextInput
 
 from .models import *
 
@@ -52,7 +52,10 @@ class AddOrderForm(forms.ModelForm):
             'note',
             'date_for_ready',
             'thickness']
-        widgets = {'date_for_ready': DateInput(attrs={'type': 'date'})}  # календарик в форме
+        widgets = {
+            'date_for_ready': DateInput(attrs={'type': 'date'}),  # календарик в форме
+            'part': TextInput(attrs={'type': 'input'})
+        }
 
 
 class AddCuttingSpeedForm(forms.ModelForm):

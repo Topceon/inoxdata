@@ -4,8 +4,8 @@ from django.urls import reverse
 
 class Orders(models.Model):
     name_order = models.CharField(max_length=255, verbose_name='Заказ')  # номер заказа
-    part = models.ForeignKey('Parts', on_delete=models.PROTECT, verbose_name='Деталь')  # ссылка на деталь
-    ready_qty = models.TextField(blank=True, verbose_name='Готовые')  # кол-во готовых деталей (словарь { штуки: дата})
+    part = models.ForeignKey('Parts', on_delete=models.PROTECT, to_field='name_part', verbose_name='Деталь')  # ссылка на деталь
+    ready_qty = models.TextField(blank=True, default=0, verbose_name='Готовые')  # кол-во готовых деталей { штуки: дата}
     need_qty = models.IntegerField(verbose_name='Количество')  # требуемое количество деталей
     machine = models.ForeignKey('Machine', on_delete=models.PROTECT, verbose_name='Станок')  # станок для резки
     note = models.TextField(blank=True, verbose_name='Примечание')  # примечание (blank=True - значения может не быть)
@@ -22,7 +22,7 @@ class Orders(models.Model):
 
 
 class Parts(models.Model):
-    name_part = models.CharField(max_length=255, verbose_name='Деталь')  # название детали
+    name_part = models.CharField(max_length=255, unique=True,verbose_name='Деталь')  # название детали
     material = models.ForeignKey('Materials', verbose_name='Материал', on_delete=models.PROTECT)  # ссылка на материал
     thickness = models.ForeignKey('Thickness', verbose_name='Толщина', on_delete=models.PROTECT)  # толщина материала
     cut_length = models.IntegerField(verbose_name='Длина реза(мм)')  # длина реза
