@@ -13,5 +13,7 @@ urlpatterns = [
     path('form_orders/', FormOrderCreator.as_view(), name='form_orders'),
     path('form_thickness/', FormThicknessCreator.as_view(), name='form_thickness'),
     path('form_machine/', FormMachineCreator.as_view(), name='form_machine'),
-    path('form_cutting_speed/', FormCuttingSpeedCreator.as_view(), name='form_cutting_speed')
+    path('form_cutting_speed/', FormCuttingSpeedCreator.as_view(), name='form_cutting_speed'),
+    path('delete/<int:pk>', DeleteBtn.as_view(), name='delete'),
+    path('test-order/<int:pk>', UpdateOrderCreator.as_view(), name='test_order')
 ]

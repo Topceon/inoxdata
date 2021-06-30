@@ -18,17 +18,13 @@
         <div class="button"><a href="{% url 'form_thickness' %}">Толщина  </a></div>
         <div class="button"><a href="{% url 'form_machine' %}">Станок  </a></div>
         <div class="button"><a href="{% url 'form_cutting_speed' %}">Скорость реза  </a></div>
+        <div class="button"><a href="{% url 'form_cutting_speed' %}">Тест  </a></div>
         <div><h4>Создание </h4></div>
     </div>
 
 {% block content %}
 {% endblock %}
     <script src="{% static 'orders/js/jquery.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-            $('body').append("<div>djnjydskjnhsdf</div>")
-            console.log("gznm")
-        });
-    </script>
+    <script src="{% static 'orders/js/ready.js' %}"></script>
 </body>
 </html>

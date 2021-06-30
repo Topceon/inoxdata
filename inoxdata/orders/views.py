@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
 
 from .forms import *
 
@@ -77,3 +78,17 @@ class FormCuttingSpeedCreator(CreateView):
     form_class = AddCuttingSpeedForm
     template_name = 'orders/forms.html'
     extra_context = {'forms': 'form_cutting_speed'}
+
+
+class DeleteBtn(DeleteView):
+    model = Orders
+    template_name = 'orders/index.html'
+    success_url = reverse_lazy('home')
+
+
+class UpdateOrderCreator(UpdateView):
+    model = Orders
+    template_name = 'orders/forms.html'
+    form_class = AddOrderForm
+    success_url = reverse_lazy('home')
+    extra_context = {'forms': 'form_orders'}

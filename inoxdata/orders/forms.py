@@ -66,3 +66,10 @@ class AddCuttingSpeedForm(forms.ModelForm):
             'thickness',
             'machine',
             'speed']
+
+
+class AddReadyForm(forms.ModelForm):
+    class Meta:
+        model = Orders
+        fields = [
+            'name_order']
