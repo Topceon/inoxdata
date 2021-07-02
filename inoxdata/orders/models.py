@@ -14,8 +14,8 @@ class Orders(models.Model):
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # первая деталь в партии
     thickness = models.ForeignKey('Thickness', null=True, blank=True, verbose_name='Толщина', on_delete=models.PROTECT)
 
-    def __str__(self):
-        return str(self.name_order)
+    # def __str__(self):
+    #     return str(self.name_order)
 
     def get_absolute_url(self):
         return reverse('form_orders')

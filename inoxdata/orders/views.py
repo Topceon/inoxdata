@@ -88,7 +88,6 @@ class DeleteBtn(DeleteView):
 
 class UpdateOrderCreator(UpdateView):
     model = Orders
-    template_name = 'orders/forms.html'
+    template_name = 'orders/testord.html'
     form_class = AddOrderForm
-    success_url = reverse_lazy('home')
-    extra_context = {'forms': 'form_orders'}
+
