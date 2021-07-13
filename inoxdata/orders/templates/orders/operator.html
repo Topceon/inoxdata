@@ -1,27 +1,16 @@
 {% extends 'orders/base.html' %}
+{% load orders_tags %}
 
 {% block content %}
 <div class="container">
-    <table class="tableMove">
+    <!--        Левый сайдбар -->
+    {% get_orders cont.id %}
 
-<!--        Шапка таблицы со скролингом-->
-        <tr>
-            <th class="">Заказ</th>
-            <th class="">Деталь</th>
-            <th class="">есть/надо</th>
-            <th class="">Выдать заказчику</th>
-        </tr>
-
-<!--        Формирование таблицы-->
-        {% for f in object_list %}
-        <tr>
-            <td>   |  {{ f }}</td>
-            <td>   |  {{ f.part }}</td>
-            <td>   |  {{ f.ready_qty }}/{{ f.need_qty }}</td>
-            <td>   |  {{ f.date_for_ready }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <!--     Контент справа -->
+    <div class="right">
+        <div class="prop_container">{{ cont.id }}</div>
+        <div class="image_container"></div>
+    </div>
 
 </div>
 {% endblock %}

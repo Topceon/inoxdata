@@ -12,22 +12,27 @@ class OrdersHome(ListView):
     extra_context = {"menu": "trr"}
 
 
-class VoloknoWork(ListView):
+class VoloknoWork(DetailView):
     model = Orders
-    template_name = 'orders/index.html'
-    extra_context = {"Machine": "Волокно"}
+    template_name = 'orders/operator.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'cont'
+    # extra_context = {"Machine": "Волокно"}
 
-    def get_queryset(self):
-        return Orders.objects.filter(machine=1)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    # def get_queryset(self):
+    #     return Orders.objects.filter(machine=1)
 
 
-class YagWork(ListView):
+class YagWork(DetailView):
     model = Orders
-    template_name = 'orders/index.html'
-    extra_context = {"Machine": "YAG"}
+    template_name = 'orders/test.html'
+    context_object_name = 'order'
 
-    def get_queryset(self):
-        return Orders.objects.filter(machine=2)
+    # def get_queryset(self):
+    #     return Orders.objects.filter(machine=2)
 
 
 class GidroWork(ListView):

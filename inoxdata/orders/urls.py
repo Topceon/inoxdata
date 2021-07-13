@@ -4,8 +4,8 @@ from .views import *
 
 urlpatterns = [
     path('', OrdersHome.as_view(), name='home'),
-    path('volokno/', VoloknoWork.as_view(), name='volokno'),
-    path('yag/', YagWork.as_view(), name='yag'),
+    path('volokno/<int:pk>/', VoloknoWork.as_view(), name='volokno'),
+    path('yag/<int:pk>/', YagWork.as_view(), name='yag'),
     path('gidro/', GidroWork.as_view(), name='gidro'),
     path('ready/', ListReadyOrders.as_view(), name='ready'),
     path('form-materials/', FormCreator.as_view(), name='form_materials'),
