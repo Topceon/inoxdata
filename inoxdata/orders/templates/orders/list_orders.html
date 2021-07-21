@@ -1,29 +1,38 @@
     <div class="left">
-        <table class="tableMove">
+        <div class="tableMove">
     <!--        Шапка таблицы со скролингом-->
-            <tr class="trr">
-                <th class="">Заказ</th>
-                <th class="">Деталь</th>
-                <th class="">есть/надо</th>
-                <th class="">Выдать заказчику</th>
-            </tr>
+            <div class="row head-row">
+                <div class="header-colon col_two">Заказ</div>
+                <div class="header-colon col_three">Деталь</div>
+                <div class="header-colon col_two">есть/надо</div>
+                <div class="header-colon col_two">Мат</div>
+                <div class="header-colon col_one">Тол</div>
+            </div>
 
     <!--        Формирование таблицы-->
             {% for f in ords %}
                 {% if f.id == sel %}
-                    <tr class="trg">
-                        <td>   |  {{ f }}</td>
-                        <td>   |  {{ f.id }}</td>
-                        <td>   |  {{ f.ready_qty }}/{{ f.need_qty }}</td>
-                        <td>   |  {{ f.date_for_ready }}</td>
-                 {% else %}
-                    <tr class="trr">
-                        <td>   |  {{ f }}</td>
-                        <td>   |  {{ f.id }}</td>
-                        <td>   |  {{ f.ready_qty }}/{{ f.need_qty }}</td>
-                        <td>   |  {{ f.date_for_ready }}</td>
-                    </tr>
+                    <div class="row row-color action_row">
+                        <div class="colon col_two">{{ f }}</div>
+                        <div class="colon col_three">{{ f.part }}</div>
+                        <div class="colon col_two">
+                            {% for trt in cont.ready_qty.all %}
+                            {% endfor %}
+                            /{{ f.need_qty }}</div>
+                        <div class="colon col_two">{{ f.get_material }}</div>
+                        <div class="colon col_one">{{ f.get_thickness }}</div>
+                    </div>
+                    {% else %}
+                    <div class="row-color">
+                        <a href="{% url 'volokno' f.id %}" class="row">
+                            <div class="colon col_two">{{ f }}</div>
+                            <div class="colon col_three">{{ f.part }}</div>
+                            <div class="colon col_two">{{ f.ready_qty }}/{{ f.need_qty }}</div>
+                            <div class="colon col_two">{{ f.get_material }}</div>
+                            <div class="colon col_one">{{ f.get_thickness }}</div>
+                        </a>
+                    </div>
                 {% endif %}
             {% endfor %}
-        </table>
+        </div>
     </div>

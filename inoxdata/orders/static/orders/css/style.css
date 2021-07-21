@@ -81,17 +81,24 @@ select {
 /* ============НАЧАЛО================ */
 
 body{
+    font-family: arial;
+    font-size: 14px;
     background-color: blue;
 }
-
+/*
 div {
-    margin: 2px;
-    border: 2px solid black;
+    border: 1px solid black;
+}
+*/
+a {
+    color: #444;
+    text-decoration: none;
 }
 
 .header{
-    position: fixed;
-    background-color: gray;
+    position: relative;
+    background-color: #111;
+    color: #999;
     display: flex;
     top: 0;
     left: 0;
@@ -101,27 +108,98 @@ div {
 
 .container {
     display: flex;
-    background-color: green;
-    width: 100%;
+    background-color: #888888;
+    width: 100vw;
     min-width: 1000px;
-    margin-top: 80px;
+    height: 100vh;
+    margin-left: 440px;
 }
+
+/* ============ Левый сайдбар ================ */
 
 .left {
-    flex: 0 0 300px; /* ширина списка заказов */
-    height: auto;
+    background: gray;
+    position: absolute;
+    width: 440px;
+    height: 100vh;
+    top: 60px;
+    left: 0;
 }
 
+.tableMove{
+    background-color: #909090;
+}
+
+.row{
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.row-color:nth-child(odd) {
+    background-color: #999999;
+}
+
+.head-row {
+    background-color: #777;
+    position: fixed;
+    height: 60px;
+    top: 0;
+}
+
+.colon {
+    display: inline-block;
+    height: 100%;
+    padding: 5px;
+}
+
+.header-colon {
+    display: inline-block;
+    height: 60px;
+}
+
+.col_one{
+    width: 30px;
+}
+
+.col_two{
+    width: 60px;
+}
+
+.col_three{
+    width: 210px;
+}
+
+.row-color:hover {
+    background-color: #4e945a;
+}
+.row-color.action_row {
+    background-color: green;
+}
+
+/* ============ Основной контент ================ */
+
 .right {
+    position: fixed;
     flex: 1 0;
     height: auto;
     display: flex;
+    left: 440px;
+    right:0;
+    top:0;
+    bottom:0;
 }
 
 .prop_container {
     background: green;
-    flex: 0 0 200px;
+    flex: 0 0 300px; /* ширина контейнера характеристик */
     display: inline-block;
+}
+
+.prop{
+    padding: 5px;
+    margin-top: 10px;
+    background: gray;
 }
 
 .image_container {
@@ -131,13 +209,6 @@ div {
     min-width: 400px;
 }
 
-.trg {
-    background-color: green;
-}
-
-.trr {
-    background-color: gray;
-}
-.trr:hover {
-    background-color: green;
+.prop {
+    margin-left: 10px;
 }

@@ -1,15 +1,40 @@
 {% extends 'orders/base.html' %}
+{% load static %}
 {% load orders_tags %}
 
 {% block content %}
-<div class="container">
     <!--        Левый сайдбар -->
     {% get_orders cont.id %}
+<div class="container">
 
     <!--     Контент справа -->
     <div class="right">
-        <div class="prop_container">{{ cont.id }}</div>
-        <div class="image_container"></div>
+        <div class="prop_container">
+            <div class="prop">{{ cont.id }}</div>
+            <div class="prop">Название детали: </br> {{ cont.part }}</div>
+            <div class="prop">Требуемое количество материала: </br> {{ cont.get_required_material }}</div>
+            <div class="prop">Вырезано:
+            {% for trt in cont.ready_qty.all %}
+            </br>{{ trt }}шт дата: {{ trt.date_time_ready }}
+            {% endfor %}
+            </div>
+<!--            <div class="prop">-->
+<!--                <form  method="post">-->
+<!--                    {% csrf_token %}-->
+<!--                    {{ form }}-->
+<!--                    <button type="submit">Добавить</button>-->
+<!--                </form>-->
+<!--            </div>-->
+            <div class="prop"><lable>ОТК</lable>
+            <input type="radio"  accept="{{ cont.otk }}"></div>
+            <div class="prop">Дата выдачи заказчику:</br>{{ cont.date_for_ready }}</div>
+            <div class="prop">Примечание заказа:</br>{{ cont.note }}</div>
+            <div class="prop">Примечание детали:</br>{{ cont.get_part_note }}</div>
+        </div>
+            <!--====== чертеж ====== -->
+        <div class="image_container">
+            <iframe src="{% static cont.get_file_name %}" style="width: 100%;height: 100%;border: none;"></iframe>
+        </div>
     </div>
 
 </div>

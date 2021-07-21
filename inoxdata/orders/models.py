@@ -5,7 +5,7 @@ from django.urls import reverse
 class Orders(models.Model):
     name_order = models.CharField(max_length=255, verbose_name='Заказ')  # номер заказа
     part = models.ForeignKey('Parts', on_delete=models.PROTECT, to_field='name_part', verbose_name='Деталь')  # ссылка на деталь
-    ready_qty = models.TextField(blank=True, default=0, verbose_name='Готовые')  # кол-во готовых деталей { штуки: дата}
+    ready_qty = models.ManyToManyField('ReadyOrders', default='', related_name='rq', verbose_name='Готовые')  # кол-во готовых деталей { штуки: дата}
     need_qty = models.IntegerField(verbose_name='Количество')  # требуемое количество деталей
     machine = models.ForeignKey('Machine', on_delete=models.PROTECT, verbose_name='Станок')  # станок для резки
     note = models.TextField(blank=True, verbose_name='Примечание')  # примечание (blank=True - значения может не быть)
@@ -13,6 +13,7 @@ class Orders(models.Model):
     date_for_ready = models.DateField(verbose_name='Дата выдачи заказчику')  # дата выдачи заказа клиенту
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # первая деталь в партии
     thickness = models.ForeignKey('Thickness', null=True, blank=True, verbose_name='Толщина', on_delete=models.PROTECT)
+    # TODO
 
     def __str__(self):
         return str(self.name_order)
@@ -20,9 +21,33 @@ class Orders(models.Model):
     def get_absolute_url(self):
         return reverse('form_orders')
 
+    def get_file_name(self):
+        st = f'orders/media/{str(self.part)}.pdf'
+        return st
+
+    def get_material(self):
+        mtl = str(self.part.material)
+        return mtl
+
+    def get_thickness(self):
+        thc = str(self.part.thickness)
+        return thc
+
+    def get_part_note(self):
+        gpn = str(self.part.note)
+        return gpn
+
+    def get_required_material(self):
+        grm = str(round((self.part.x_length * self.part.x_length / 1000000), 2))
+        return grm
+
+    def get_ready_qty(self):
+        rqt = str(self.ready_qty)
+        return rqt
+
 
 class Parts(models.Model):
-    name_part = models.CharField(max_length=255, unique=True,verbose_name='Деталь')  # название детали
+    name_part = models.CharField(max_length=255, unique=True, verbose_name='Деталь')  # название детали
     material = models.ForeignKey('Materials', verbose_name='Материал', on_delete=models.PROTECT)  # ссылка на материал
     thickness = models.ForeignKey('Thickness', verbose_name='Толщина', on_delete=models.PROTECT)  # толщина материала
     cut_length = models.IntegerField(verbose_name='Длина реза(мм)')  # длина реза
@@ -61,18 +86,15 @@ class Thickness(models.Model):
 
 
 class ReadyOrders(models.Model):
-    name_order = models.CharField(max_length=255)  # номер заказа
-    part = models.ForeignKey('Parts', on_delete=models.PROTECT, verbose_name='Деталь')  # ссылка на деталь
-    need_qty = models.IntegerField()  # требуемое количество деталей
-    note = models.TextField(blank=True)  # примечание (blank=True - значение может быть пустым)
-    date_time_ready = models.DateTimeField(auto_now_add=True)  # время готовности
-    material = models.ForeignKey('Materials', verbose_name='Материал', on_delete=models.PROTECT)  # если был использован
-    thickness = models.ForeignKey('Thickness', verbose_name='Толщина', on_delete=models.PROTECT)  # не стандартный мате
-    machine = models.ForeignKey('Machine', on_delete=models.PROTECT, verbose_name='Станок')  # станок для резки
-    otk = models.CharField(max_length=255)  # кто утвердил партию
+    qty = models.IntegerField(verbose_name='Количество')  # вырезанное количество
+    date_time_ready = models.DateTimeField(auto_now_add=True)
+    machine = models.ForeignKey('Machine', on_delete=models.PROTECT, verbose_name='Станок')
 
     def get_absolute_url(self):
-        return reverse('ready')
+        return reverse('time_ready')
+
+    def __str__(self):
+        return str(self.qty)
 
 
 class Storage(models.Model):

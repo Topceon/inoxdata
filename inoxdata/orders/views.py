@@ -12,8 +12,9 @@ class OrdersHome(ListView):
     extra_context = {"menu": "trr"}
 
 
-class VoloknoWork(DetailView):
+class VoloknoWork(UpdateView):
     model = Orders
+    form_class = UpdateOrderForm
     template_name = 'orders/operator.html'
     pk_url_kwarg = 'pk'
     context_object_name = 'cont'
@@ -21,9 +22,11 @@ class VoloknoWork(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['ur'] = f'orders/media/{20}'
         return context
-    # def get_queryset(self):
-    #     return Orders.objects.filter(machine=1)
+
+    # def get_material(self):
+    #     return Orders.object.get()
 
 
 class YagWork(DetailView):
@@ -95,4 +98,9 @@ class UpdateOrderCreator(UpdateView):
     model = Orders
     template_name = 'orders/testord.html'
     form_class = AddOrderForm
+
+class AddTimeReadyForm(CreateView):
+    form_class = TimeReadyForm
+    template_name = 'orders/forms.html'
+    extra_context = {'forms': 'time_ready'}
 

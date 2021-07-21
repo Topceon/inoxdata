@@ -15,5 +15,6 @@ urlpatterns = [
     path('form-machine/', FormMachineCreator.as_view(), name='form_machine'),
     path('form-cutting_speed/', FormCuttingSpeedCreator.as_view(), name='form_cutting_speed'),
     path('delete/<int:pk>/', DeleteBtn.as_view(), name='delete'),
-    path('test-order/<int:pk>/', UpdateOrderCreator.as_view(), name='test_order')
+    path('test-order/<int:pk>/', UpdateOrderCreator.as_view(), name='test_order'),
+    path('form-time_ready/', AddTimeReadyForm.as_view(), name='time_ready')
 ]
