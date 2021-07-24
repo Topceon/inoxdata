@@ -16,9 +16,9 @@
                         <div class="colon col_two">{{ f }}</div>
                         <div class="colon col_three">{{ f.part }}</div>
                         <div class="colon col_two">
-                            {% for trt in cont.ready_qty.all %}
-                            {% endfor %}
-                            /{{ f.need_qty }}</div>
+                            {{ f.get_ready_qty }}
+                            /{{ f.need_qty }}
+                        </div>
                         <div class="colon col_two">{{ f.get_material }}</div>
                         <div class="colon col_one">{{ f.get_thickness }}</div>
                     </div>
@@ -27,7 +27,10 @@
                         <a href="{% url 'volokno' f.id %}" class="row">
                             <div class="colon col_two">{{ f }}</div>
                             <div class="colon col_three">{{ f.part }}</div>
-                            <div class="colon col_two">{{ f.ready_qty }}/{{ f.need_qty }}</div>
+                            <div class="colon col_two">
+                                {{ f.get_ready_qty }}
+                                /{{ f.need_qty }}
+                            </div>
                             <div class="colon col_two">{{ f.get_material }}</div>
                             <div class="colon col_one">{{ f.get_thickness }}</div>
                         </a>

@@ -12,20 +12,21 @@
         <div class="prop_container">
             <div class="prop">{{ cont.id }}</div>
             <div class="prop">Название детали: </br> {{ cont.part }}</div>
+            <div class="prop">Файл станка: <button onclick="copyFunction()">Кнопка не работает</button> </br> <input type="text" value="{{ cont.get_machine_file_name }}" id="for_copy"></div>
             <div class="prop">Требуемое количество материала: </br> {{ cont.get_required_material }}</div>
             <div class="prop">Вырезано:
-            {% for trt in cont.ready_qty.all %}
-            </br>{{ trt }}шт дата: {{ trt.date_time_ready }}
-            {% endfor %}
+                {% for trt in cont.readyorders_set.all %}
+                    </br>{{ trt }}шт дата: {{ trt.date_time_ready }}
+                {% endfor %}
             </div>
-<!--            <div class="prop">-->
-<!--                <form  method="post">-->
-<!--                    {% csrf_token %}-->
-<!--                    {{ form }}-->
-<!--                    <button type="submit">Добавить</button>-->
-<!--                </form>-->
-<!--            </div>-->
-            <div class="prop"><lable>ОТК</lable>
+            <div class="prop">
+                <form  action="{% url 'date_ready' cont.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="qty">
+                    <button type="submit">Добавить</button>
+                </form>
+            </div>
+            <div class="prop"><lable>ОТК</lable> <!-- ОТК должен отображаться как не редактируемый чекбокс или с вариантами-->
             <input type="radio"  accept="{{ cont.otk }}"></div>
             <div class="prop">Дата выдачи заказчику:</br>{{ cont.date_for_ready }}</div>
             <div class="prop">Примечание заказа:</br>{{ cont.note }}</div>

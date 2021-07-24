@@ -129,7 +129,7 @@ a {
 .tableMove{
     background-color: #909090;
 }
-
+/* TODO кликабельность первой строчки только по низу блока */
 .row{
     display: block;
     height: auto;
@@ -211,4 +211,12 @@ a {
 
 .prop {
     margin-left: 10px;
+}
+
+.button {
+    height: 40px;
+    display: block;
+    margin: 4px;
+    padding: 4px;
+    background-color: #999;
 }

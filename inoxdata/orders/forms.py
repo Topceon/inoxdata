@@ -58,16 +58,12 @@ class AddOrderForm(forms.ModelForm):
         }
 
 
-class UpdateOrderForm(forms.ModelForm):
+class DateReadyForm(forms.ModelForm):
     class Meta:
         model = Orders
         fields = [
             'need_qty'
         ]
-
-    widgets = {
-        'need_qty': TextInput(attrs={'type': 'input'})
-    }
 
 
 class AddCuttingSpeedForm(forms.ModelForm):
@@ -82,9 +78,9 @@ class AddCuttingSpeedForm(forms.ModelForm):
 
 class AddReadyForm(forms.ModelForm):
     class Meta:
-        model = Orders
+        model = ReadyOrders
         fields = [
-            'name_order']
+            'qty']
 
 
 class TimeReadyForm(forms.ModelForm):
