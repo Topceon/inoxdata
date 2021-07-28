@@ -6,7 +6,7 @@ register = template.Library()
 
 # ======= формирование списка для оператора ===========
 @register.inclusion_tag('orders/list_orders.html')
-def get_orders(machine=1, sel=24):
+def get_orders(machine=1, sel=0):
         ords = Orders.objects.filter(priority=100, machine=machine)
         if sel == 0:
             sel = ords[0].id
