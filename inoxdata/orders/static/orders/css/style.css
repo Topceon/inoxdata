@@ -122,14 +122,29 @@ a {
     position: absolute;
     width: 440px;
     height: 100vh;
-    top: 60px;
+    top: 100px;
     left: 0;
 }
 
 .tableMove{
     background-color: #909090;
 }
-/* TODO кликабельность первой строчки только по низу блока */
+/* TODO исправить кликабельность первой строчки только по низу блока */
+
+.machine_change_block {
+    background: red;
+    display: block;
+    position: fixed;
+    width: 440px;
+    height: 40px;
+    top: 0;
+}
+
+.machine_change {
+    background: green;
+    height: 20px;
+}
+
 .row{
     display: block;
     height: auto;
@@ -144,7 +159,7 @@ a {
     background-color: #777;
     position: fixed;
     height: 60px;
-    top: 0;
+    top: 40px;
 }
 
 .colon {

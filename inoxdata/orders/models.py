@@ -124,6 +124,10 @@ class Machine(models.Model):
     def get_absolute_url(self):
         return reverse('form_machine')
 
+    def get_first_order(self):
+        gfo = str(self.orders_set.all()[0].id)
+        return gfo
+
 
 class CuttingSpeed(models.Model):
     material = models.ForeignKey('Materials', on_delete=models.PROTECT, verbose_name='Материал')  # материал

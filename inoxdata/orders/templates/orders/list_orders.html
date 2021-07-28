@@ -24,7 +24,7 @@
                     </div>
                     {% else %}
                     <div class="row-color">
-                        <a href="{% url 'volokno' f.id %}" class="row">
+                        <a href="{% url 'operator' f.machine_id f.id %}" class="row">
                             <div class="colon col_two">{{ f }}</div>
                             <div class="colon col_three">{{ f.part }}</div>
                             <div class="colon col_two">

@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('', OrdersHome.as_view(), name='home'),
-    path('volokno/<int:pk>/', VoloknoWork.as_view(), name='volokno'),
+    path('operator/<int:machinepk>/<int:pk>/', OperatorWork.as_view(), name='operator'),
     path('yag/<int:pk>/', YagWork.as_view(), name='yag'),
     path('gidro/', GidroWork.as_view(), name='gidro'),
     path('ready/', ListReadyOrders.as_view(), name='ready'),

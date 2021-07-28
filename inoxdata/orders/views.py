@@ -12,7 +12,7 @@ class OrdersHome(ListView):
     extra_context = {"menu": "trr"}
 
 
-class VoloknoWork(UpdateView):
+class OperatorWork(DetailView):
     model = Orders
     form_class = DateReadyForm
     template_name = 'orders/operator.html'
@@ -22,7 +22,7 @@ class VoloknoWork(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['ur'] = f'orders/media/{20}'
+        context['machinepk'] = Machine.objects.all()
         return context
 
 
@@ -111,4 +111,4 @@ class AddDateReady(View):
             form.machine = order.machine
             form.ready_qty = order
             form.save()
-        return redirect('volokno', pk=pk)
+        return redirect('operator', pk=pk, machinepk=order.machine_id)

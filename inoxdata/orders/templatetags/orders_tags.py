@@ -6,19 +6,18 @@ register = template.Library()
 
 # ======= формирование списка для оператора ===========
 @register.inclusion_tag('orders/list_orders.html')
-def get_orders(sel=24):
-        ords = Orders.objects.filter(priority=100, machine=1)
+def get_orders(machine=1, sel=24):
+        ords = Orders.objects.filter(priority=100, machine=machine)
+        if sel == 0:
+            sel = ords[0].id
         return {"ords": ords, 'sel': sel}
 
 
-# ======= формирование детали для оператора ===========
-@register.inclusion_tag('orders/detail_order.html')
-def show_order(pk=23):
-    if pk == 23:
-        ords = Orders.objects.get(pk=23)
-    else:
-        ords = Orders.objects.get(pk=pk)
-        return {"ords": ords}
+# ======= формирование списка станков с первой  ===========
+@register.inclusion_tag('orders/list_machine.html')
+def change_machine():
+    mach = Machine.objects.all()
+    return {'mach': mach}
 
 
 @register.inclusion_tag('orders/header.html')
