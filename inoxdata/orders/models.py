@@ -125,9 +125,9 @@ class Machine(models.Model):
         return reverse('form_machine')
 
     def get_first_order(self):
-        gfo = 1 #TODO добавить отображение специального заказа
+        gfo = 1
         if self.orders_set.filter(priority__gte=1):
-            gfo = str(self.orders_set.all()[0].id)
+            gfo = str(self.orders_set.filter(priority=100)[0].id)
         return gfo
 
 

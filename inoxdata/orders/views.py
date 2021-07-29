@@ -18,11 +18,9 @@ class OperatorWork(DetailView):
     template_name = 'orders/operator.html'
     pk_url_kwarg = 'pk'
     context_object_name = 'cont'
-    # extra_context = {"Machine": "Волокно"}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['machinepk'] = Machine.objects.all()
         return context
 
 
