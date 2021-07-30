@@ -83,7 +83,7 @@ select {
 body{
     font-family: arial;
     font-size: 14px;
-    background-color: blue;
+    background-color: gray;
 }
 /*
 div {
@@ -119,7 +119,6 @@ a {
     background: gray;
     position: absolute;
     width: 440px;
-    height: 100vh;
     top: 100px;
     left: 0;
 }
