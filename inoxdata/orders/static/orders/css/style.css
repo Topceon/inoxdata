@@ -109,8 +109,6 @@ a {
 .container {
     display: flex;
     background-color: #888888;
-    width: 100vw;
-    min-width: 1000px;
     height: 100vh;
     margin-left: 440px;
 }

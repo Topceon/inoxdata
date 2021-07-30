@@ -5,12 +5,12 @@
 {% block content %}
     <!--        Левый сайдбар -->
 
+    {% get_orders machine=cont.machine_id sel=cont.id %}
+
     <!--        выпадающий список станков  -->
 <div class="machine_change_block">
     {% change_machine %}
 </div>
-
-    {% get_orders machine=cont.machine_id sel=cont.id %}
 
 <div class="container">
 
