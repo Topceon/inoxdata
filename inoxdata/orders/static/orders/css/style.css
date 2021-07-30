@@ -133,16 +133,17 @@ a {
 
 .machine_change_block {
     background: red;
-    display: block;
     position: fixed;
     width: 440px;
     height: 40px;
     top: 0;
 }
 
-.machine_change {
+.change_machine {
+    display: inline-block;
     background: green;
-    height: 20px;
+    width: 80px;
+    height: 100%;
 }
 
 .row{
@@ -174,15 +175,15 @@ a {
 }
 
 .col_one{
-    width: 30px;
+    width: 28px;
 }
 
 .col_two{
-    width: 60px;
+    width: 58px;
 }
 
 .col_three{
-    width: 210px;
+    width: 208px;
 }
 
 .row-color:hover {

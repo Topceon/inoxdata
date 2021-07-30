@@ -1,7 +1,7 @@
-<div class="change_machine">
+<div class="machine_change_block">
 {% for machine in mach %}
-    <a href="{% url 'operator' machine.id machine.get_first_order %}">
-        <div>{{ machine }}</br></div>
+    <a class="change_machine" href="{% url 'operator' machine.id machine.get_first_order %}">
+        {{ machine }}
     </a>
 {% endfor %}
 </div>
