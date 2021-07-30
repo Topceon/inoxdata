@@ -107,6 +107,8 @@ class AddDateReady(View):
         if form.is_valid():
             form = form.save(commit=False)
             form.machine = order.machine
+            if not form.qty:
+                form.qty = order.need_qty - int(order.get_ready_qty())
             form.ready_qty = order
             form.save()
         return redirect('operator', pk=pk, machinepk=order.machine_id)

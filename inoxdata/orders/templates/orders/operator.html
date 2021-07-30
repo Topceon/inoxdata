@@ -31,7 +31,7 @@
             <div class="prop">
                 <form  action="{% url 'date_ready' cont.pk %}" method="post">
                     {% csrf_token %}
-                    <input type="text" name="qty">
+                    <input type="text" value="0" name="qty">
                     <button type="submit">Добавить</button>
                 </form>
             </div>
