@@ -126,21 +126,40 @@ a {
 .tableMove{
     background-color: #909090;
 }
-/* TODO исправить кликабельность первой строчки только по низу блока */
 
 .machine_change_block {
+    overflow: hidden;
     background: red;
     position: fixed;
-    width: 440px;
-    height: 40px;
+    width: auto;
+    height: 50px;
     top: 0;
+    z-index: 10;
+}
+
+.machine_change_block2 {
+    margin-top: 50px;
+    display: block;
+}
+
+.machine_change_block:hover {
+    overflow: visible;
 }
 
 .change_machine {
-    display: inline-block;
+    font-size: 18px;
+    padding: 10px;
     background: green;
-    width: 80px;
-    height: 100%;
+    display: block;
+    width: 150px;
+    height: 50px;
+}
+
+.sel {
+    position: absolute;
+    top: 0;
+    background: #989898;
+    z-index: 20;
 }
 
 .row{
@@ -156,8 +175,11 @@ a {
 .head-row {
     background-color: #777;
     position: fixed;
-    height: 60px;
-    top: 40px;
+    height: 100px;
+    width: 440px;
+    padding-top: 50px;
+    top: 0;
+    z-index: 9;
 }
 
 .colon {
@@ -168,7 +190,8 @@ a {
 
 .header-colon {
     display: inline-block;
-    height: 60px;
+    bottom: 0;
+    height: 20px;
 }
 
 .col_one{

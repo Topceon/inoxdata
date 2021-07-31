@@ -1,7 +1,15 @@
 <div class="machine_change_block">
+    <div class="machine_change_block2">
 {% for machine in mach %}
+    {% if machine.id == sel %}
+    <a class="change_machine sel" href="{% url 'operator' machine.id machine.get_first_order %}">
+        {{ machine }}
+    </a>
+    {% else  %}
     <a class="change_machine" href="{% url 'operator' machine.id machine.get_first_order %}">
         {{ machine }}
     </a>
+    {% endif %}
 {% endfor %}
+    </div>
 </div>

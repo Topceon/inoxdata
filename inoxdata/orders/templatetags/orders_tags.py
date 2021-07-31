@@ -15,9 +15,9 @@ def get_orders(machine=1, sel=0):
 
 # ======= формирование списка станков с первой  ===========
 @register.inclusion_tag('orders/list_machine.html')
-def change_machine():
+def change_machine(sel=0):
     mach = Machine.objects.all()
-    return {'mach': mach}
+    return {'mach': mach, 'sel': sel}
 
 
 @register.inclusion_tag('orders/header.html')

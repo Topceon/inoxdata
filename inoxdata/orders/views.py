@@ -19,9 +19,12 @@ class OperatorWork(DetailView):
     pk_url_kwarg = 'pk'
     context_object_name = 'cont'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *, object=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['machinepk'] = self.kwargs['machinepk']
         return context
+
+
 
 
 class YagWork(DetailView):

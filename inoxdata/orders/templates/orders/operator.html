@@ -3,21 +3,18 @@
 {% load orders_tags %}
 
 {% block content %}
-    <!--        Левый сайдбар -->
 
+    <!--        Левый сайдбар -->
     {% get_orders machine=cont.machine_id sel=cont.id %}
 
     <!--        выпадающий список станков  -->
-<div class="machine_change_block">
-    {% change_machine %}
-</div>
+    {% change_machine machinepk %}
 
 <div class="container">
 
     <!--     Контент справа -->
     <div class="right">
         <div class="prop_container">
-
             <div class="prop">{{ cont.id }}</div>
             <div class="prop">{{ cont.machine }}</div>
             <div class="prop">Название детали: </br> {{ cont.part }}</div>
