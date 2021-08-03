@@ -89,7 +89,7 @@ class FormCuttingSpeedCreator(CreateView):
 class DeleteBtn(DeleteView):
     model = Orders
     template_name = 'orders/index.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('work')
 
 
 class UpdateOrderCreator(UpdateView):
