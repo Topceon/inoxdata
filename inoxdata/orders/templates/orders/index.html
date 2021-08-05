@@ -19,7 +19,7 @@
         {% for f in object_list %}
         <tr>
             <td>   |  {{ f }}</td>
-            <td>   |  {{ f.part }}</td>
+            <td class="hov"   onclick="window.open( '{% static f.get_file_name %}', 'Test', 'width=1024', 'height=800, top=100 left=300')">   |  {{ f.part }}</td>
             <td>   |  {{ f.get_ready_qty }}/{{ f.need_qty }}</td>
             <td>   |  {{ f.date_for_ready }} </td>
         </tr>
