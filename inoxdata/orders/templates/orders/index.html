@@ -4,8 +4,8 @@
 
 {% block content %}
 {% show_header2 %}
-<div class="container">
-    <table class="tableMove">
+<div class="">
+    <table class="">
 
 <!--        Шапка таблицы со скролингом-->
         <tr>
@@ -20,7 +20,7 @@
         <tr>
             <td>   |  {{ f }}</td>
             <td>   |  {{ f.part }}</td>
-            <td>   |  {{ pars }}/{{ f.need_qty }}</td>
+            <td>   |  {{ f.get_ready_qty }}/{{ f.need_qty }}</td>
             <td>   |  {{ f.date_for_ready }} </td>
         </tr>
         {% endfor %}

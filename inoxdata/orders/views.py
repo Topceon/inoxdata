@@ -11,6 +11,9 @@ class OrdersHome(ListView):
     template_name = 'orders/index.html'
     extra_context = {"menu": "trr"}
 
+    def get_queryset(self):
+        return Orders.objects.filter(priority__gte=1)
+
 
 class OperatorWork(DetailView):
     model = Orders
@@ -23,26 +26,6 @@ class OperatorWork(DetailView):
         context = super().get_context_data(**kwargs)
         context['machinepk'] = self.kwargs['machinepk']
         return context
-
-
-
-
-class YagWork(DetailView):
-    model = Orders
-    template_name = 'orders/test.html'
-    context_object_name = 'order'
-
-    # def get_queryset(self):
-    #     return Orders.objects.filter(machine=2)
-
-
-class GidroWork(ListView):
-    model = Orders
-    template_name = 'orders/index.html'
-    extra_context = {"Machine": "Гидра"}
-
-    def get_queryset(self):
-        return Orders.objects.filter(machine=3)
 
 
 class ListReadyOrders(ListView):
