@@ -21,13 +21,7 @@
             <td>   |  {{ f }}</td>
             <td>   |  {{ f.part }}</td>
             <td>   |  {{ pars }}/{{ f.need_qty }}</td>
-            <td>   |  {{ f.date_for_ready }} <a href="{% url 'test_order' f.id %}">ред</a></td>
-            <td>
-                <form action="{% url 'delete' f.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">готово</button>
-                </form>
-            </td>
+            <td>   |  {{ f.date_for_ready }} </td>
         </tr>
         {% endfor %}
     </table>
