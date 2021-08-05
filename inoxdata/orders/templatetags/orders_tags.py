@@ -23,3 +23,7 @@ def change_machine(sel=0):
 @register.inclusion_tag('orders/header.html')
 def show_header():
     pass
+
+@register.inclusion_tag('orders/header2.html')
+def show_header2():
+    pass

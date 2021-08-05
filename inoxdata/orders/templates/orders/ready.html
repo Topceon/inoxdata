@@ -1,7 +1,28 @@
 {% extends 'orders/base.html' %}
+{% load static %}
+{% load orders_tags %}
 
 {% block content %}
+{% show_header2 %}
 
-Готовые
+<!--        Шапка таблицы -->
+<table>
+    <tr>
+        <th> Заказ</th>
+        <th> Деталь</th>
+        <th> Количество</th>
+        <th> Дата готовности</th>
+    </tr>
+
+<!--        Формирование таблицы-->
+    {% for f in object_list %}
+    <tr>
+        <td> {{ f }}</td>
+        <td class="hov"   onclick="window.open( '{% static f.get_file_name %}', 'Test', 'width=1024', 'height=800, top=100 left=300')"> {{ f.part }}</td>
+        <td> {{ f.need_qty }}</td>
+        <td> {{ f.get_ready_time | date:"d" }}</td>
+    </tr>
+    {% endfor %}
+</table>
 
 {% endblock %}

@@ -13,7 +13,6 @@ class Orders(models.Model):
     otk = models.BooleanField(default=False, verbose_name='Одобрен')  # первая деталь в партии
     thickness = models.ForeignKey('Thickness', null=True, blank=True, verbose_name='Толщина', on_delete=models.PROTECT)
     priority = models.CharField(max_length=255, default=100, verbose_name='Приоритет')  # приоритет резки
-    # TODO
 
     def __str__(self):
         return str(self.name_order)
@@ -56,6 +55,12 @@ class Orders(models.Model):
                 self.priority = 0
                 self.save()
         return str(rqt)
+
+    def get_ready_time(self):
+        rt = 0
+        for i in self.readyorders_set.all():
+            rt = i.date_time_ready
+        return str(rt)
 
 
 class Parts(models.Model):

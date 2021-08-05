@@ -46,8 +46,11 @@ class GidroWork(ListView):
 
 
 class ListReadyOrders(ListView):
-    model = ReadyOrders
+    model = Orders
     template_name = 'orders/ready.html'
+
+    def get_queryset(self):
+        return Orders.objects.filter(priority=0)
 
 
 class FormCreator(CreateView):

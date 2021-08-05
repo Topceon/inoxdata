@@ -256,3 +256,7 @@ a {
     padding: 4px;
     background-color: #999;
 }
+
+.hov:hover {
+    color: red;
+}
