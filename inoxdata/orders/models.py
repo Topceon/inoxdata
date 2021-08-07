@@ -132,7 +132,7 @@ class Machine(models.Model):
     def get_first_order(self):
         gfo = 1
         if self.orders_set.filter(priority__gte=1):
-            gfo = str(self.orders_set.filter(priority__gte=1)[0].id)
+            gfo = str(self.orders_set.filter(priority__gte=1).order_by('priority')[0].id)
         return gfo
 
 
