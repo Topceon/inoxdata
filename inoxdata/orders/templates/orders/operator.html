@@ -18,7 +18,7 @@
             <div class="prop">{{ cont.id }}</div>
             <div class="prop">{{ cont.machine }}</div>
             <div class="prop">Название детали: </br> {{ cont.part }}</div>
-            <div class="prop">Файл станка: <button onclick="copyFunction()">Кнопка не работает</button> </br> <input type="text" value="{{ cont.get_machine_file_name }}" id="for_copy"></div>
+            <div class="prop">Файл станка: <button id="copyText">Копировать</button> </br> <input id="inputText" type="text" value="{{ cont.get_machine_file_name }}"></div>
             <div class="prop">Требуемое количество материала: </br> {{ cont.get_required_material }}</div>     <!-- TODO кнопка копирования -->
             <div class="prop">Вырезано:
                 {% for trt in cont.readyorders_set.all %}
