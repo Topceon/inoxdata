@@ -60,7 +60,7 @@ class Orders(models.Model):
         rt = 0
         for i in self.readyorders_set.all():
             rt = i.date_time_ready
-        return str(rt)
+        return rt
 
 
 class Parts(models.Model):

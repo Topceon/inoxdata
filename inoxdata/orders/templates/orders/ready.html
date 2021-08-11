@@ -20,7 +20,7 @@
         <td> {{ f }}</td>
         <td class="hov"   onclick="window.open( '{% static f.get_file_name %}', 'Test', 'width=1024', 'height=800, top=100 left=300')"> {{ f.part }}</td>
         <td> {{ f.need_qty }}</td>
-        <td> {{ f.get_ready_time | date:"d" }}</td>
+        <td> {{ f.get_ready_time | date:"d m Y" }}</td>
     </tr>
     {% endfor %}
 </table>

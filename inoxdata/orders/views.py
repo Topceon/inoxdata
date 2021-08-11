@@ -33,7 +33,7 @@ class ListReadyOrders(ListView):
     template_name = 'orders/ready.html'
 
     def get_queryset(self):
-        return Orders.objects.filter(priority=0)
+        return Orders.objects.filter(priority=0).order_by('id')
 
 
 class FormCreator(CreateView):
