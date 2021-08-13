@@ -33,7 +33,9 @@ class ListReadyOrders(ListView):
     template_name = 'orders/ready.html'
 
     def get_queryset(self):
-        return Orders.objects.filter(priority=0).order_by('id')
+        gqs = Orders.objects.filter(priority=0)
+        gqs = sorted(gqs, key=lambda fr: fr.get_ready_time(), reverse=True)
+        return gqs
 
 
 class FormCreator(CreateView):

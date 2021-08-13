@@ -58,7 +58,7 @@ class Orders(models.Model):
 
     def get_ready_time(self):
         rt = 0
-        for i in self.readyorders_set.all():
+        for i in self.readyorders_set.all(): #TODO сделать нормальный запро даты последней записи
             rt = i.date_time_ready
         return rt
 
