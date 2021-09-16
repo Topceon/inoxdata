@@ -39,6 +39,10 @@ class Orders(models.Model):
         thc = str(self.part.thickness)
         return thc
 
+    def get_part_otk(self):
+        potk = self.part.otk
+        return potk
+
     def get_part_note(self):
         gpn = str(self.part.note)
         return gpn

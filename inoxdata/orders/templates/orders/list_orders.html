@@ -15,7 +15,14 @@
                     <div class="row row-color action_row">
                         <div class="colon col_two">{{ f }}</div>
                         <div class="colon col_three">{{ f.part }}</div>
-                        <div class="colon col_two">
+                        <div class="colon col_two
+                            {% if f.get_part_otk or f.otk %}
+                                {% if f.get_ready_qty != '0' %}
+                                    otk_row_wait
+                                {% elif f.get_part_otk %}
+                                    otk_row_fai
+                                {% endif %}
+                            {% endif %}">
                             {{ f.get_ready_qty }}
                             /{{ f.need_qty }}
                         </div>
@@ -27,7 +34,14 @@
                         <a href="{% url 'operator' f.machine_id f.id %}" class="row">
                             <div class="colon col_two">{{ f }}</div>
                             <div class="colon col_three">{{ f.part }}</div>
-                            <div class="colon col_two">
+                            <div class="colon col_two
+                            {% if f.get_part_otk or f.otk %}
+                                {% if f.get_ready_qty != '0' %}
+                                    otk_row_wait
+                                {% elif f.get_part_otk %}
+                                    otk_row_fai
+                                {% endif %}
+                            {% endif %}">
                                 {{ f.get_ready_qty }}
                                 /{{ f.need_qty }}
                             </div>

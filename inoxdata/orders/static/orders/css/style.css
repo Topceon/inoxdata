@@ -206,11 +206,14 @@ a {
     width: 208px;
 }
 
-.row-color:hover {
-    background-color: #4e945a;
-}
 .row-color.action_row {
     background-color: green;
+}
+
+
+
+.row-color:hover {
+    background-color: #4e945a;
 }
 
 /* ============ Основной контент ================ */
@@ -259,4 +262,16 @@ a {
 
 .hov:hover {
     color: red;
+}
+
+.otk_row {
+    background-color: orange;
+}
+
+.otk_row_wait {
+    background-color: #b5ab4b; /* желтый */
+}
+
+.otk_row_fai {
+    background-color: #d26c6c; /* красный */
 }
