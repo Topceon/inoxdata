@@ -103,3 +103,11 @@ class AddDateReady(View):
             form.ready_qty = order
             form.save()
         return redirect('operator', pk=pk, machinepk=order.machine_id)
+
+
+class AddOtkCheck(View):
+    def post(self, request, pk):
+        order = Orders.objects.get(id=pk)
+        order.otk = False
+        order.save()
+        return redirect('operator', pk=pk, machinepk=order.machine_id)

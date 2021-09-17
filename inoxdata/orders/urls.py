@@ -16,5 +16,5 @@ urlpatterns = [
     path('test-order/<int:pk>/', UpdateOrderCreator.as_view(), name='test_order'),
     path('form-time_ready/', AddTimeReadyForm.as_view(), name='time_ready'),
     path('date-ready/<int:pk>/', AddDateReady.as_view(), name='date_ready'),
-
+    path('otk-check/<int:pk>/', AddOtkCheck.as_view(), name='otk_check')
 ]

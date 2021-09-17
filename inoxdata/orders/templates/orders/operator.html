@@ -29,7 +29,7 @@
                 <form  action="{% url 'date_ready' cont.pk %}" method="post">
                     {% csrf_token %}
                     <input type="text" value="0" name="qty">
-                    <button type="submit">Добавить</button>
+                    <button type="submit">Захуярил</button>
                 </form>
             </div>
             <div class="prop
@@ -39,8 +39,14 @@
                                 {% elif cont.get_part_otk %}
                                     otk_row_fai
                                 {% endif %}
-                            {% endif %}"><lable>ОТК</lable> <!-- ОТК должен отображаться как не редактируемый чекбокс или с вариантами-->
-            <input type="radio"  accept="{{ cont.otk }}"></div>
+                            {% endif %}"><lable>ОТК</lable>
+                {% if cont.otk %}
+                    <form  action="{% url 'otk_check' cont.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Хуярим</button>
+                    </form>
+                {% endif %}
+            </div>
             <div class="prop">Дата выдачи заказчику:</br>{{ cont.date_for_ready }}</div>
             <div class="prop">Примечание заказа:</br>{{ cont.note }}</div>
             <div class="prop">Примечание детали:</br>{{ cont.get_part_note }}</div>
