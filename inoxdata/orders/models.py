@@ -10,7 +10,7 @@ class Orders(models.Model):
     note = models.TextField(blank=True, verbose_name='Примечание')  # примечание (blank=True - значения может не быть)
     need_material = models.BooleanField(default=True, verbose_name='Материал в наличии')  # на будущее, есть ли материал
     date_for_ready = models.DateField(verbose_name='Дата выдачи заказчику')  # дата выдачи заказа клиенту
-    otk = models.BooleanField(default=False, verbose_name='Одобрен')  # первая деталь в партии
+    otk = models.BooleanField(default=True, verbose_name='Одобрен')  # первая деталь в партии
     thickness = models.ForeignKey('Thickness', null=True, blank=True, verbose_name='Толщина', on_delete=models.PROTECT)
     priority = models.CharField(max_length=255, default=100, verbose_name='Приоритет')  # приоритет резки
 
