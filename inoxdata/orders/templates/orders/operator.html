@@ -29,7 +29,7 @@
                 <form  action="{% url 'date_ready' cont.pk %}" method="post">
                     {% csrf_token %}
                     <input type="text" value="0" name="qty">
-                    <button type="submit">Захуярил</button>
+                    <button type="submit">Готово</button>
                 </form>
             </div>
             <div class="prop
@@ -43,7 +43,7 @@
                 {% if cont.otk %}
                     <form  action="{% url 'otk_check' cont.pk %}" method="post">
                         {% csrf_token %}
-                        <button type="submit">Хуярим</button>
+                        <button type="submit">Одобрено</button>
                     </form>
                 {% endif %}
             </div>
