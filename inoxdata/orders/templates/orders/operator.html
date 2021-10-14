@@ -48,8 +48,8 @@
                 {% endif %}
             </div>
             <div class="prop">Дата выдачи заказчику:</br>{{ cont.date_for_ready }}</div>
-            <div class="prop">Примечание заказа:</br>{{ cont.note }}</div>
-            <div class="prop">Примечание детали:</br>{{ cont.get_part_note }}</div>
+            <div class="prop{% if cont.note != ''%} otk_row_fai{% endif %}">Примечание заказа:</br>{{ cont.note }}</div>
+            <div class="prop{% if cont.get_part_note != ''%} otk_row_fai{% endif %}">Примечание детали:</br>{{ cont.get_part_note }}</div>
         </div>
             <!--====== чертеж ====== -->
         <div class="image_container">
