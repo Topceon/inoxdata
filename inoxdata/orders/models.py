@@ -61,10 +61,8 @@ class Orders(models.Model):
         return str(rqt)
 
     def get_ready_time(self):
-        rt = 0
-        for i in self.readyorders_set.all(): #TODO сделать нормальный запро даты последней записи
-            rt = i.date_time_ready
-        return rt
+        rt = self.readyorders_set.order_by('date_time_ready').last()
+        return rt.date_time_ready
 
 
 class Parts(models.Model):
