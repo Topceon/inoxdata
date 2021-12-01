@@ -48,7 +48,7 @@ class Orders(models.Model):
         return gpn
 
     def get_required_material(self):
-        grm = str(round((self.part.x_length * self.part.x_length / 1000000 * self.need_qty), 2))
+        grm = str(round((self.part.x_length * self.part.y_length / 1000000 * self.need_qty), 2))
         return grm
 
     def get_ready_qty(self):
