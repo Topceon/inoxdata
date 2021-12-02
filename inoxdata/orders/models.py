@@ -12,7 +12,7 @@ class Orders(models.Model):
     date_for_ready = models.DateField(verbose_name='Дата выдачи заказчику')  # дата выдачи заказа клиенту
     otk = models.BooleanField(default=True, verbose_name='Одобрен')  # первая деталь в партии
     thickness = models.ForeignKey('Thickness', null=True, blank=True, verbose_name='Толщина', on_delete=models.PROTECT)
-    priority = models.CharField(max_length=255, default=100, verbose_name='Приоритет')  # приоритет резки
+    priority = models.CharField(max_length=255, default=9, verbose_name='Приоритет')  # приоритет резки
 
     def __str__(self):
         return str(self.name_order)
