@@ -196,6 +196,7 @@ a {
 
 .col_one{
     width: 28px;
+    float: right;
 }
 
 .col_two{
