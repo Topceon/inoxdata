@@ -124,6 +124,7 @@ class Storage(models.Model):
 
 class Machine(models.Model):
     name = models.CharField(max_length=255, verbose_name='Станок')  # станок
+    file_adr = models.CharField(max_length=255, default='', verbose_name='Папка для файлов')   # адрес папки на сервере
 
     def __str__(self):
         return str(self.name)

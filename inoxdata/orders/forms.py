@@ -38,7 +38,9 @@ class AddMachineForm(forms.ModelForm):
     class Meta:
         model = Machine
         fields = [
-            'name']
+            'name',
+            'file_adr'
+        ]
 
 
 class AddOrderForm(forms.ModelForm):
