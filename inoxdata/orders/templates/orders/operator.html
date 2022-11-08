@@ -19,7 +19,7 @@
             <div class="prop">{{ cont.machine }}</div>
             <div class="prop">Название детали: </br> {{ cont.part }}</div>
             <div class="prop">Файл станка: <button id="copyText">Копировать</button> </br>
-                <input id="inputText" type="text" value="\\CEHLASER\share\{{ cont.machine.file_adr }}\{{ cont.get_machine_file_name }}.dxf"></div>
+                <input id="inputText" type="text" value="{{ cont.machine.file_adr }}{{ cont.get_machine_file_name }}.dxf"></div>
             <div class="prop">Требуемое количество материала: </br> {{ cont.get_required_material }}</div>
             <div class="prop">Вырезано:
                 {% for trt in cont.readyorders_set.all %}
