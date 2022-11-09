@@ -12,7 +12,7 @@ class OrdersHome(ListView):
     extra_context = {"menu": "trr"}
 
     def get_queryset(self):
-        return Orders.objects.filter(priority__gte=1)
+        return Orders.objects.filter(priority__gte=1).exclude(machine=2)
 
 
 class OperatorWork(DetailView):
@@ -33,7 +33,7 @@ class ListReadyOrders(ListView):
     template_name = 'orders/ready.html'
 
     def get_queryset(self):
-        gqs = Orders.objects.filter(priority=0)
+        gqs = Orders.objects.filter(priority=0).exclude(machine=2)
         gqs = sorted(gqs, key=lambda fr: fr.get_ready_time(), reverse=True)
         return gqs
 
