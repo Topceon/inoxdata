@@ -33,7 +33,7 @@ class ListReadyOrders(ListView):
     template_name = 'orders/ready.html'
 
     def get_queryset(self):
-        gqs = Orders.objects.filter(priority=0).exclude(machine=2)
+        gqs = Orders.objects.filter(priority=0).exclude(machine=2)[:1000]
         gqs = sorted(gqs, key=lambda fr: fr.get_ready_time(), reverse=True)
         return gqs
 
