@@ -98,7 +98,8 @@ class AddMassOrdersForm(forms.ModelForm):
         model = Orders
         fields = [
             'name_order',
-            'date_for_ready']
+            'date_for_ready',
+            'machine']
         widgets = {
             'date_for_ready': DateInput(attrs={'type': 'date'}),  # календарик в форме
             'part': TextInput(attrs={'type': 'input'})

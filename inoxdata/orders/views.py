@@ -121,7 +121,7 @@ class FormMassOrdersCreator(CreateView):
     def post(self, request):
         form = AddMassOrdersForm(request.POST)
         form = form.save(commit=False)
-        machine = Machine.objects.get(name='Волокно')
+        machine = Machine.objects.get(name=form.machine)
         name_order_data = form.name_order
         cant_create_orders = []
         with open("create_orders.txt") as my_file:
