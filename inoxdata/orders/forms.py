@@ -92,3 +92,14 @@ class TimeReadyForm(forms.ModelForm):
             'qty',
             'machine'
         ]
+
+class AddMassOrdersForm(forms.ModelForm):
+    class Meta:
+        model = Orders
+        fields = [
+            'name_order',
+            'date_for_ready']
+        widgets = {
+            'date_for_ready': DateInput(attrs={'type': 'date'}),  # календарик в форме
+            'part': TextInput(attrs={'type': 'input'})
+        }

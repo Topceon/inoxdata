@@ -85,6 +85,7 @@ class UpdateOrderCreator(UpdateView):
     template_name = 'orders/testord.html'
     form_class = AddOrderForm
 
+
 class AddTimeReadyForm(CreateView):
     form_class = TimeReadyForm
     template_name = 'orders/forms.html'
@@ -111,3 +112,40 @@ class AddOtkCheck(View):
         order.otk = False
         order.save()
         return redirect('operator', pk=pk, machinepk=order.machine_id)
+
+
+class FormMassOrdersCreator(CreateView):
+    form_class = AddMassOrdersForm
+    template_name = 'orders/forms.html'
+    extra_context = {'forms': 'form_mass_orders'}
+    def post(self, request):
+        form = AddMassOrdersForm(request.POST)
+        form = form.save(commit=False)
+        machine = Machine.objects.get(name='Волокно')
+        name_order_data = form.name_order
+        cant_create_orders = []
+        with open("create_orders.txt") as my_file:
+            file = list(my_file)
+        for line in file:
+            # print(line)
+            need_qty, name_order, part_line = line.strip().split(',')
+            print(f'{need_qty},{name_order},{part_line}')
+            try:
+                part_line = Parts.objects.get(name_part__contains=part_line)
+                form.need_qty = 5
+                order = Orders(name_order=name_order + " " + name_order_data,
+                               part=part_line,
+                               need_qty=need_qty,
+                               machine=machine,
+                               date_for_ready=form.date_for_ready)
+                order.save()
+            except Exception as e:
+                cant_create_orders.append(f'{need_qty},{name_order},{part_line}')
+                print(e)
+                continue
+        if cant_create_orders:
+            with open("cant_create_orders.txt", "w") as new_file:
+                for item in cant_create_orders:
+                    new_file.write(item + "\n")
+
+        return redirect('form_orders')
