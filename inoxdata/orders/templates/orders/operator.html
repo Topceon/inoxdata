@@ -29,7 +29,11 @@
             <div class="prop">
                 <form  action="{% url 'date_ready' cont.pk %}" method="post">
                     {% csrf_token %}
-                    <input type="text" value="0" name="qty">
+                    <div>Вырезано</div>
+                    <input type="text" value="0" name="qty">шт
+                    <div>Номер входного контроля материала</div>
+                    <input type="text" name="material_control" required id="material_control">
+                    <div class="form-error">{{ f.errors}}</div>
                     <button type="submit">Готово</button>
                 </form>
             </div>

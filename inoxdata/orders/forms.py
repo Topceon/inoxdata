@@ -82,7 +82,9 @@ class AddReadyForm(forms.ModelForm):
     class Meta:
         model = ReadyOrders
         fields = [
-            'qty']
+            'qty',
+            'material_control'
+        ]
 
 
 class TimeReadyForm(forms.ModelForm):
