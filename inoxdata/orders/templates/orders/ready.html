@@ -6,27 +6,44 @@
 {% show_header2 %}
 
 <!--        Шапка таблицы -->
-<table>
+<table id="ready_table_fixed">
     <tr>
-        <th> Заказ</th>
-        <th> Деталь</th>
-        <th> Материал</th>
-        <th> Толщина</th>
-        <th> Количество</th>
-        <th> Дата готовности</th>
+        <th class="th_td_2"> Заказ</th>
+        <th class="th_td_3"> Деталь</th>
+        <th class="th_td_2"> Материал</th>
+        <th class="th_td_1"> Толщина</th>
+        <th class="th_td_1"> Количество</th>
+        <th class="th_td_1"> Номер ОТК</th>
+        <th class="th_td_2"> Дата готовности</th>
+    </tr>
+</table>
+<table class="table_move">
+    <tr id="ready_table_head">
+        <th class="th_td_2"> Заказ</th>
+        <th class="th_td_3"> Деталь</th>
+        <th class="th_td_2"> Материал</th>
+        <th class="th_td_1"> Толщина</th>
+        <th class="th_td_1"> Количество</th>
+        <th class="th_td_1"> Номер ОТК</th>
+        <th class="th_td_2"> Дата готовности</th>
     </tr>
 
 <!--        Формирование таблицы-->
     {% for f in object_list %}
-    <tr>
-        <td> {{ f }}</td>
-        <td class="hov"   onclick="window.open( '{% static f.get_file_name %}', 'Test', 'width=1024', 'height=800, top=100 left=300')">   |  {{ f.part }}</td>
-        <td>   |  {{ f.get_material }} </td>
-        <td>   |  {{ f.get_thickness }} </td>
-        <td>   |  {{ f.need_qty }}</td>
-        <td>   |  {{ f.get_ready_time | date:"d m Y" }}</td>
+    <tr class="ready_table_rows">
+        <td class="th_td_2"> {{ f }}</td>
+        <td class="hov th_td_3"   onclick="window.open( '{% static f.get_file_name %}', 'Test', 'width=1024', 'height=800, top=100 left=300')">   |  {{ f.part }}</td>
+        <td class="th_td_2">   |  {{ f.get_material }} </td>
+        <td class="th_td_1">   |  {{ f.get_thickness }} </td>
+        <td class="th_td_1">   |  {{ f.need_qty }}</td>
+        <td class="th_td_1">   |  {{ f.get_material_control }}</td>
+        <td class="th_td_2">   |  {{ f.get_ready_time | date:"d m Y" }}</td>
     </tr>
     {% endfor %}
 </table>
-
+<div class="footer">
+        {% for p in paginator.page_range %}
+            <a class="page_button" href="?page={{ p }}">{{ p }}</a>
+        {% endfor %}
+</div>
 {% endblock %}

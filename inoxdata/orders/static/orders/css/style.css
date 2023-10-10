@@ -96,7 +96,7 @@ a {
 }
 
 .header{
-    position: relative;
+    position: absolute;
     background-color: #111;
     color: #999;
     display: flex;
@@ -104,6 +104,7 @@ a {
     left: 0;
     width: 100%;
     height: 80px;
+    z-index: 1000;
 }
 
 .container {
@@ -275,4 +276,51 @@ a {
 
 .otk_row_fai {
     background-color: #d26c6c; /* красный */
+}
+
+#ready_table_fixed {
+    position: fixed;
+    background-color: #b5ab4b; /* желтый */
+    z-index: 999;
+}
+
+.th_td_1 {
+    width: 100px;
+}
+
+.th_td_2 {
+    width: 200px;
+
+}
+
+.th_td_3 {
+    width: 400px;
+}
+
+.ready_table_rows {
+    background-color: #999;
+}
+
+.table_move {
+    background-color: #b5ab4b; /* желтый */
+    padding-top: 80px;
+}
+
+.footer {
+    padding: 20px;
+    display: flex;
+    width: auto;
+    height: 100px;
+    background-color: #111111;
+}
+
+.page_button {
+    /*border: solid 1px;*/
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    display: block;
+    margin: 4px;
+    padding: 3px;
+    background-color: #999;
 }

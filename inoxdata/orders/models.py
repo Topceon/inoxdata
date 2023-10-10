@@ -39,6 +39,13 @@ class Orders(models.Model):
         thc = str(self.part.thickness)
         return thc
 
+    def get_material_control(self):
+        gmc = []
+        for i in self.readyorders_set.all():
+            gmc.append(i.material_control)
+        gmc = set(gmc)
+        return str(gmc)[1:-1]
+
     def get_part_otk(self):
         potk = self.part.otk
         return potk

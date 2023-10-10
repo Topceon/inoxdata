@@ -7,12 +7,13 @@ from .forms import *
 
 
 class OrdersHome(ListView):
+    paginate_by = 100
     model = Orders
     template_name = 'orders/index.html'
     extra_context = {"menu": "trr"}
 
     def get_queryset(self):
-        return Orders.objects.filter(priority__gte=1).exclude(machine=2)
+        return Orders.objects.filter(priority__gte=1).exclude(machine=2).order_by('id')
 
 
 class OperatorWork(DetailView):
@@ -29,11 +30,12 @@ class OperatorWork(DetailView):
 
 
 class ListReadyOrders(ListView):
+    paginate_by = 100
     model = Orders
     template_name = 'orders/ready.html'
 
     def get_queryset(self):
-        gqs = Orders.objects.filter(priority=0).exclude(machine=2).order_by('-id')[:1000]
+        gqs = Orders.objects.filter(priority=0).exclude(machine=2)
         gqs = sorted(gqs, key=lambda fr: fr.get_ready_time(), reverse=True)
         return gqs
 

@@ -4,31 +4,44 @@
 
 {% block content %}
 {% show_header2 %}
-<div class="">
-    <table class="">
+
+    <table id="ready_table_fixed">
+    <tr>
+        <th class="th_td_2">Заказ</th>
+        <th class="th_td_3">Деталь</th>
+        <th class="th_td_2">Материал</th>
+        <th class="th_td_2">Толщина</th>
+        <th class="th_td_2">есть/надо</th>
+        <th class="th_td_2">Выдать заказчику</th>
+    </tr>
+    </table>
+    <table class="table_move">
 
 <!--        Шапка таблицы со скролингом-->
-        <tr>
-            <th class="">Заказ</th>
-            <th class="">Деталь</th>
-            <th class="">Материал</th>
-            <th class="">Толщина</th>
-            <th class="">есть/надо</th>
-            <th class="">Выдать заказчику</th>
+        <tr id="ready_table_head">
+            <th class="th_td_2">Заказ</th>
+            <th class="th_td_3">Деталь</th>
+            <th class="th_td_2">Материал</th>
+            <th class="th_td_2">Толщина</th>
+            <th class="th_td_2">есть/надо</th>
+            <th class="th_td_2">Выдать заказчику</th>
         </tr>
 
 <!--        Формирование таблицы-->
         {% for f in object_list %}
-        <tr>
-            <td>   |  {{ f }}</td>
-            <td class="hov"   onclick="window.open( '{% static f.get_file_name %}', 'Test', 'width=1024', 'height=800, top=100 left=300')">   |  {{ f.part }}</td>
-            <td>   |  {{ f.get_material }} </td>
-            <td>   |  {{ f.get_thickness }} </td>
-            <td>   |  {{ f.get_ready_qty }}/{{ f.need_qty }}</td>
-            <td>   |  {{ f.date_for_ready }} </td>
+        <tr class="ready_table_rows">
+            <td class="th_td_2">   |  {{ f }}</td>
+            <td class="hov th_td_3"   onclick="window.open( '{% static f.get_file_name %}', 'Test', 'width=1024', 'height=800, top=100 left=300')">   |  {{ f.part }}</td>
+            <td class="th_td_2">   |  {{ f.get_material }} </td>
+            <td class="th_td_2">   |  {{ f.get_thickness }} </td>
+            <td class="th_td_2">   |  {{ f.get_ready_qty }}/{{ f.need_qty }}</td>
+            <td class="th_td_2">   |  {{ f.date_for_ready }} </td>
         </tr>
         {% endfor %}
     </table>
-
+<div class="footer">
+        {% for p in paginator.page_range %}
+            <a class="page_button" href="?page={{ p }}">{{ p }}</a>
+        {% endfor %}
 </div>
 {% endblock %}
