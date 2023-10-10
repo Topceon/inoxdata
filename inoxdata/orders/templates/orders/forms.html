@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{% url forms %}" method="post">
+<form class="move_top" action="{% url forms %}" method="post">
     {% csrf_token %}
 
     {% for f in form %}

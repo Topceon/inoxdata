@@ -324,3 +324,7 @@ a {
     padding: 3px;
     background-color: #999;
 }
+
+.move_top {
+    padding-top: 90px;
+}
