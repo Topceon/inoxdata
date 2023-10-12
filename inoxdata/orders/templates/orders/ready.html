@@ -37,7 +37,7 @@
         <td class="th_td_1">   |  {{ f.get_thickness }} </td>
         <td class="th_td_1">   |  {{ f.need_qty }}</td>
         <td class="th_td_1">   |  {{ f.get_material_control }}</td>
-        <td class="th_td_2">   |  {{ f.get_ready_time | date:"d m Y" }}</td>
+        <td class="th_td_2">   |  {{ f.latest_ready | date:"d m Y" }}</td>
     </tr>
     {% endfor %}
 </table>

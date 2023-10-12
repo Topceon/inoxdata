@@ -1,18 +1,19 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, View, DeleteView, DetailView, UpdateView
+from django.db.models import OuterRef, Subquery
 
 from .forms import *
 
 
 class OrdersHome(ListView):
-    paginate_by = 100
+    paginate_by = 3000
     model = Orders
     template_name = 'orders/index.html'
     extra_context = {"menu": "trr"}
 
     def get_queryset(self):
+        # переменная machine тут захардкожена
         return Orders.objects.filter(priority__gte=1).exclude(machine=2).order_by('id')
 
 
@@ -30,14 +31,17 @@ class OperatorWork(DetailView):
 
 
 class ListReadyOrders(ListView):
-    paginate_by = 100
+    paginate_by = 500
     model = Orders
     template_name = 'orders/ready.html'
 
     def get_queryset(self):
-        gqs = Orders.objects.filter(priority=0).exclude(machine=2)
-        gqs = sorted(gqs, key=lambda fr: fr.get_ready_time(), reverse=True)
-        return gqs
+        latest_rdy_parts = ReadyOrders.objects.filter(ready_qty=OuterRef("id")).order_by('-date_time_ready')
+
+        # переменная machine тут захардкожена
+        orders_with_latest_ready = Orders.objects.filter(priority=0).exclude(machine=2).annotate(
+            latest_ready=Subquery(latest_rdy_parts.values('date_time_ready')[:1])).order_by('-latest_ready')
+        return orders_with_latest_ready
 
 
 class FormCreator(CreateView):
@@ -120,6 +124,7 @@ class FormMassOrdersCreator(CreateView):
     form_class = AddMassOrdersForm
     template_name = 'orders/forms.html'
     extra_context = {'forms': 'form_mass_orders'}
+
     def post(self, request):
         form = AddMassOrdersForm(request.POST)
         form = form.save(commit=False)

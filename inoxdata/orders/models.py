@@ -67,10 +67,6 @@ class Orders(models.Model):
                 self.save()
         return str(rqt)
 
-    def get_ready_time(self):
-        rt = self.readyorders_set.order_by('date_time_ready').last()
-        return rt.date_time_ready
-
 
 class Parts(models.Model):
     name_part = models.CharField(max_length=255, unique=True, verbose_name='Деталь')  # название детали
