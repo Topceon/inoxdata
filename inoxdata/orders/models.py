@@ -44,7 +44,7 @@ class Orders(models.Model):
         for i in self.readyorders_set.all():
             gmc.append(i.material_control)
         gmc = set(gmc)
-        return str(gmc)[1:-1]
+        return ', '.join(gmc)
 
     def get_part_otk(self):
         potk = self.part.otk
@@ -112,7 +112,7 @@ class ReadyOrders(models.Model):
     date_time_ready = models.DateTimeField(auto_now_add=True)
     machine = models.ForeignKey('Machine', on_delete=models.PROTECT, verbose_name='Станок')
     ready_qty = models.ForeignKey('Orders', on_delete=models.PROTECT, default='', verbose_name='Готовые')
-    material_control = models.IntegerField(verbose_name='Входной контроль материала')
+    material_control = models.CharField(max_length=255, verbose_name='Входной контроль материала')
 
     def __str__(self):
         return str(self.qty)
